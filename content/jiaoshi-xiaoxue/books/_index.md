@@ -2,7 +2,7 @@
 title: "书籍库"
 type: bookshelf
 cert: "jiaoshi-xiaoxue"
-description: "小学教师资格笔试备考书籍：综合素质·考点精讲（已上线）与教育教学知识与能力（编写中）。"
+description: "小学教师资格笔试备考书籍：综合素质·考点精讲（已上线）与教育教学知识与能力（已上线）。"
 emoji: "📚"
 weight: 40
 ---
