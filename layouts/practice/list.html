@@ -1,0 +1,27 @@
+{{ define "main" }}
+{{- partial "cert-nav.html" . -}}
+{{- $slug := "" -}}
+{{- with .File }}{{ $slug = index (split .Dir "/") 0 }}{{ end -}}
+{{- $bank := index site.Data.questions $slug -}}
+{{- $meta := slice -}}
+{{- $chapters := where (where site.RegularPages "Type" "chapter") "Params.cert" $slug -}}
+{{- range $chapters.ByWeight -}}
+  {{- $ch := . -}}
+  {{- with .Params.quizChapter -}}
+    {{- $meta = $meta | append (dict "name" . "title" $ch.Title "url" $ch.RelPermalink) -}}
+  {{- end -}}
+{{- end -}}
+
+<div class="container page-single">
+  {{ partial "breadcrumb.html" . }}
+  <header class="page-head">
+    <h1 class="page-title">{{ with .Params.emoji }}<span class="h-emoji" aria-hidden="true">{{ . }}</span>{{ end }}{{ .Title }}</h1>
+    {{- with .Params.description -}}<p class="page-subtitle">{{ . }}</p>{{- end -}}
+  </header>
+  {{- with .Content -}}<div class="prose prose--article">{{ . }}</div>{{- end -}}
+  <div id="quizApp" class="quiz-app" aria-label="题库练习"></div>
+  <noscript><p class="empty">题库练习需要启用 JavaScript。</p></noscript>
+</div>
+
+<div hidden id="quiz-data">{{- (dict "cert" $slug "bank" ($bank | default slice) "chapters" $meta "practiceUrl" .RelPermalink) | jsonify -}}</div>
+{{ end }}

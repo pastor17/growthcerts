@@ -1,0 +1,4 @@
+{{- $js := resources.Get "js/main.js" -}}
+{{- if not hugo.IsServer }}{{ $js = $js | minify | fingerprint }}{{ end -}}
+<script>window.__mermaidSrc = "{{ "js/mermaid.min.js" | relURL }}";</script>
+<script src="{{ $js.RelPermalink }}" defer></script>

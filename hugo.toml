@@ -1,0 +1,38 @@
+# =============================================================
+# 考证宝典 —— 职业资格考证备考站（Hugo 配置）
+# 结构参考 kids-stories（童心灯塔）：data/*.yaml 元数据 + content 分层 + 自绘 layouts
+# 部署前把 baseURL 改成真实地址（本地 hugo server 会自动覆盖为 localhost）
+# =============================================================
+
+baseURL = 'https://pastor17.github.io/growthcerts/'
+title = '考证宝典'
+locale = 'zh-CN'
+hasCJKLanguage = true
+summaryLength = 120
+enableEmoji = true
+enableRobotsTXT = true
+disableKinds = ['RSS', 'taxonomy', 'term']
+disableHugoGeneratorInject = true
+
+[params]
+  subtitle = '职业考证 · 书库与题库'
+  description = '按证书组织的职业资格考试备考站：报考指南、考点精讲书籍与题库练习一体，学一章、练一章，一本书配一套题。'
+  author = '考证宝典编辑部'
+  siteName = '考证宝典'
+  copyright = '© 2026 考证宝典'
+  contactEmail = 'editor@example.com'   # 改成你的联系邮箱
+  defaultEmoji = '🎓'
+  # 内容为示例/原创整理，引用官方教材内容请自行核对版权
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+    ordered = false
+
+# 证书目录即顶层 section，无需额外 permalinks/taxonomy（tags 留空关闭）
+# 注：本站模板统一使用 site.Data（全版本可用），避免 hugo.Data（需 v0.156+）
+# 本地开发版本：Hugo Extended v0.150.0+

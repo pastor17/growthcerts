@@ -1,0 +1,24 @@
+{{ define "main" }}
+<div class="container page-head">
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{- with .Description -}}<p class="page-subtitle">{{ . }}</p>{{- end -}}
+  {{- with .Content -}}<div class="prose">{{ . }}</div>{{- end -}}
+</div>
+<div class="container">
+  {{- if gt (len .Pages) 0 -}}
+  <div class="link-list">
+    {{- range .Pages.ByWeight -}}
+      <a class="link-list__item" href="{{ .RelPermalink }}">
+        <span class="link-list__emoji" aria-hidden="true">{{ with .Params.emoji }}{{ . }}{{ else }}📄{{ end }}</span>
+        <span class="link-list__body">
+          <strong>{{ .Title }}</strong>
+          {{- with .Params.description }}<small>{{ . }}</small>{{ end -}}
+        </span>
+      </a>
+    {{- end -}}
+  </div>
+  {{- else -}}
+  <p class="empty">内容整理中，敬请期待～</p>
+  {{- end -}}
+</div>
+{{ end }}

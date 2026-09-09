@@ -1,0 +1,63 @@
+{{ define "main" }}
+{{- $certs := site.Sections -}}
+{{- $books := where site.AllPages "Type" "book" -}}
+{{- $chapters := where site.RegularPages "Type" "chapter" -}}
+{{- $totalQ := 0 -}}
+{{- range $certs -}}
+  {{- $slug := "" -}}
+  {{- with .File }}{{ $slug = index (split .Dir "/") 0 }}{{ end -}}
+  {{- if $slug -}}
+    {{- $q := index site.Data.questions $slug -}}
+    {{- if $q }}{{ $totalQ = add $totalQ (len $q) }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+
+<section class="hero">
+  <div class="container hero__inner">
+    <p class="hero__eyebrow">🎯 一站一证 · 一书一练 · 学练结合</p>
+    <h1 class="hero__title">把考证，学成<span>一门一门的体系</span></h1>
+    <p class="hero__desc">{{ site.Params.description }}</p>
+    <div class="hero__actions">
+      <a class="btn btn--invert" href="{{ site.Home.RelPermalink }}#certs">🏆 开始备考</a>
+      <a class="btn btn--ghost-invert" href="{{ "about/" | relURL }}">了解本站</a>
+    </div>
+    <div class="hero__stats">
+      <div class="stat"><strong>{{ len $certs }}</strong><span>个证书体系</span></div>
+      <div class="stat"><strong>{{ len $books }}</strong><span>本备考书</span></div>
+      <div class="stat"><strong>{{ $totalQ }}</strong><span>道练习题</span></div>
+      <div class="stat"><strong>{{ len $chapters }}</strong><span>个精讲章节</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="certs">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">证书体系</h2>
+      <span class="section__more">每个证书 = 百科 + 报考 + 书籍 + 题库</span>
+    </div>
+    {{- if gt (len $certs) 0 -}}
+    <div class="cert-grid">
+      {{- range $certs.ByWeight -}}
+        {{ partial "cert-card.html" . }}
+      {{- end -}}
+    </div>
+    {{- else -}}
+    <p class="empty">证书体系正在录入中，敬请期待～</p>
+    {{- end -}}
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">为什么这样组织</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card"><span class="feature-card__emoji" aria-hidden="true">📖</span><h3>考点精讲成书</h3><p>每个证书按官方大纲拆成书与章，原创整理考点、记忆要点与易错提醒，先建框架。</p></div>
+      <div class="feature-card"><span class="feature-card__emoji" aria-hidden="true">🎯</span><h3>题库按章节配套</h3><p>每章对应一组练习题，读完一章立刻检验；做错进错题本，一键回看书中考点。</p></div>
+      <div class="feature-card"><span class="feature-card__emoji" aria-hidden="true">⏱️</span><h3>模拟考试自测</h3><p>随机抽题 + 限时作答，考前用考试模式校准节奏与正确率。</p></div>
+    </div>
+  </div>
+</section>
+{{ end }}

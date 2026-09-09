@@ -1,0 +1,18 @@
+{{- /* 书籍卡片。上下文：book 分支页（type: book 的 _index.md） */ -}}
+{{- $color := .Params.color | default "#2a9d8f" -}}
+{{- $chapters := .RegularPages.ByWeight -}}
+<article class="book-card">
+  <a class="book-card__cover" href="{{ .RelPermalink }}" style="--book-color: {{ $color }}" aria-label="{{ .Title }}">
+    <span class="book-card__emoji" aria-hidden="true">{{ .Params.coverEmoji | default "📘" }}</span>
+  </a>
+  <div class="book-card__body">
+    {{- with .Params.bookType }}<span class="book-card__type">{{ . }}</span>{{ end -}}
+    <h3 class="book-card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <p class="book-card__desc">{{ .Params.description | default .Summary | plainify | truncate 90 }}</p>
+    <div class="book-card__meta">
+      <span>{{ len $chapters }} 章</span>
+      {{- with .Params.publisher }}<span>·</span><span>{{ . }}</span>{{ end -}}
+    </div>
+    <a class="btn btn--ghost btn--sm" href="{{ .RelPermalink }}">开始阅读 →</a>
+  </div>
+</article>

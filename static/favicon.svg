@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="13" fill="#131a2b"/>
+  <!-- 学士帽 -->
+  <path d="M32 16 L8 25.5 L32 35 L56 25.5 Z" fill="#2b5bd7"/>
+  <path d="M32 35 L32 46 C32 49.6 24 51.6 16 49.8 L16 41 C20 43.8 28 44.6 32 42.6 Z" fill="#7fa3ff"/>
+  <path d="M56 25.5 L56 41" stroke="#c98a12" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+  <circle cx="56" cy="43.4" r="3" fill="#c98a12"/>
+</svg>

@@ -1,0 +1,24 @@
+{{- /* 证书卡片。上下文：证书 section Page（内容根目录下的 _index.md） */ -}}
+{{- $slug := "" -}}
+{{- with .File }}{{ $slug = index (split .Dir "/") 0 }}{{ end -}}
+{{- $color := .Params.color | default "#3a6fd8" -}}
+{{- $bookNum := len (where (where site.AllPages "Type" "book") "Params.cert" $slug) -}}
+{{- $q := index site.Data.questions $slug -}}
+{{- $qNum := 0 -}}
+{{- if $q }}{{ $qNum = len $q }}{{ end -}}
+<a class="cert-card" href="{{ .RelPermalink }}" style="--cert-color: {{ $color }}">
+  <span class="cert-card__emoji" aria-hidden="true">{{ .Params.emoji | default "🏆" }}</span>
+  <div class="cert-card__body">
+    <h3 class="cert-card__name">{{ .Params.shortname | default .Title }}</h3>
+    <p class="cert-card__title">{{ .Title }}</p>
+    <p class="cert-card__desc">{{ .Params.description | default .Summary | plainify | truncate 90 }}</p>
+    <div class="cert-card__chips">
+      {{- with .Params.field }}<span class="chip">{{ . }}</span>{{ end -}}
+      {{- with .Params.level }}<span class="chip">{{ . }}</span>{{ end -}}
+    </div>
+    <div class="cert-card__counts">
+      <span>{{ if gt $qNum 0 }}{{ $qNum }} 道题{{ else }}待建题库{{ end }}</span>
+      <span>{{ if gt $bookNum 0 }}{{ $bookNum }} 本书{{ else }}待建书籍{{ end }}</span>
+    </div>
+  </div>
+</a>

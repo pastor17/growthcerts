@@ -1,0 +1,63 @@
+{{ define "main" }}
+{{- partial "cert-nav.html" . -}}
+{{- $slug := "" -}}
+{{- with .File }}{{ $slug = index (split .Dir "/") 0 }}{{ end -}}
+{{- $book := .CurrentSection -}}
+{{- $bank := index site.Data.questions $slug -}}
+{{- $practicePage := site.GetPage (printf "%s/practice/_index.md" $slug) -}}
+{{- $n := 0 -}}
+{{- with .Params.quizChapter -}}
+  {{- if $bank }}{{ $n = len (where $bank "chapter" .) }}{{ end -}}
+{{- end -}}
+
+<article class="container page-single">
+  {{ partial "breadcrumb.html" . }}
+
+  <header class="article-head">
+    <h1 class="page-title">{{ .Title }}</h1>
+    <div class="article-head__meta">
+      {{- with $book -}}<a class="chip" href="{{ .RelPermalink }}">📖 {{ .Title }}</a>{{- end -}}
+      <span class="chip">约 {{ .WordCount }} 字</span>
+      {{- with .Params.quizChapter -}}<span class="chip">🎯 配套练习：{{ $.Params.quizChapter }}</span>{{- end -}}
+    </div>
+  </header>
+
+  <div class="prose prose--article">
+    {{ .Content }}
+  </div>
+
+  {{- if and $practicePage (gt $n 0) -}}
+  <aside class="chapter-quiz">
+    <div class="chapter-quiz__text">
+      <strong>本章配套练习</strong>
+      <span>当前收录 {{ $n }} 道示例题，做完即时判分、看解析；错题自动进入错题本。</span>
+    </div>
+    <a class="btn btn--primary" href="{{ printf "%s?%s" $practicePage.RelPermalink (querify "chapter" .Params.quizChapter) }}">开始本章练习 →</a>
+  </aside>
+  {{- end -}}
+
+  {{- /* 上一章 / 下一章 */ -}}
+  {{- $pages := $book.RegularPages.ByWeight -}}
+  {{- $prev := false -}}{{- $next := false -}}{{- $found := false -}}
+  {{- range $pages -}}
+    {{- if $found }}{{ $next = . }}{{ $found = false }}{{ end -}}
+    {{- if eq .RelPermalink $.RelPermalink }}{{ $found = true }}{{ else if not $prev }}{{ $prev = . }}{{ end -}}
+  {{- end -}}
+  {{- if or $prev $next -}}
+  <nav class="story-pager" aria-label="章节翻页">
+    {{- with $prev -}}
+    <a class="story-pager__link" href="{{ .RelPermalink }}">
+      <small>← 上一章</small>
+      <strong>{{ .Title }}</strong>
+    </a>
+    {{- else -}}<span></span>{{- end -}}
+    {{- with $next -}}
+    <a class="story-pager__link story-pager__link--next" href="{{ .RelPermalink }}">
+      <small>下一章 →</small>
+      <strong>{{ .Title }}</strong>
+    </a>
+    {{- else -}}<span></span>{{- end -}}
+  </nav>
+  {{- end -}}
+</article>
+{{ end }}

@@ -1,0 +1,63 @@
+{{ define "main" }}
+{{- partial "cert-nav.html" . -}}
+{{- $color := .Params.color | default "#2a9d8f" -}}
+{{- $chapters := .RegularPages.ByWeight -}}
+{{- $slug := "" -}}
+{{- with .File }}{{ $slug = index (split .Dir "/") 0 }}{{ end -}}
+{{- $bank := index site.Data.questions $slug -}}
+{{- $practicePage := site.GetPage (printf "%s/practice/_index.md" $slug) -}}
+
+<article class="container page-single">
+  {{ partial "breadcrumb.html" . }}
+
+  <div class="book-hero" style="--book-color: {{ $color }}">
+    <span class="book-hero__emoji" aria-hidden="true">{{ .Params.coverEmoji | default "📘" }}</span>
+    <div class="book-hero__main">
+      <p class="book-hero__eyebrow">{{ .Params.bookType | default "备考书籍" }}</p>
+      <h1 class="book-hero__title">{{ .Title }}</h1>
+      <p class="book-hero__desc">{{ .Params.description }}</p>
+      <dl class="meta-dl">
+        {{- with .Params.publisher }}<div><dt>编者</dt><dd>{{ . }}</dd></div>{{ end -}}
+        {{- with .Params.edition }}<div><dt>版本</dt><dd>{{ . }}</dd></div>{{ end -}}
+        {{- with .Params.isbn }}<div><dt>ISBN</dt><dd>{{ . }}</dd></div>{{ end -}}
+        <div><dt>章节</dt><dd>{{ len $chapters }} 章</dd></div>
+      </dl>
+      <div class="book-hero__actions">
+        {{- with first 1 $chapters -}}
+          {{- range . -}}<a class="btn btn--primary" href="{{ .RelPermalink }}">从第 1 章开始读 →</a>{{- end -}}
+        {{- else -}}
+          <span class="book-hero__soon">章节编写中，敬请期待</span>
+        {{- end -}}
+      </div>
+    </div>
+  </div>
+
+  {{- with .Content -}}<div class="prose prose--article">{{ . }}</div>{{- end -}}
+
+  <h2 class="chapter-list__title">📑 章节目录</h2>
+  {{- if gt (len $chapters) 0 -}}
+  <ol class="chapter-list">
+    {{- range $chapters -}}
+      {{- $n := 0 -}}
+      {{- with .Params.quizChapter -}}
+        {{- if $bank }}{{ $n = len (where $bank "chapter" .) }}{{ end -}}
+      {{- end -}}
+      <li>
+        <a class="chapter-list__main" href="{{ .RelPermalink }}">
+          <span class="chapter-list__num">{{ printf "%02d" .Weight }}</span>
+          <span class="chapter-list__body">
+            <strong>{{ .Title }}</strong>
+            {{- with .Params.description }}<small>{{ . }}</small>{{ end -}}
+          </span>
+        </a>
+        {{- if and $practicePage (gt $n 0) -}}
+          <a class="chapter-list__quiz" href="{{ printf "%s?%s" $practicePage.RelPermalink (querify "chapter" .Params.quizChapter) }}" title="本章 {{ $n }} 道配套题">🎯 {{ $n }} 题</a>
+        {{- end -}}
+      </li>
+    {{- end -}}
+  </ol>
+  {{- else -}}
+  <p class="empty">章节整理中，敬请期待～</p>
+  {{- end -}}
+</article>
+{{ end }}

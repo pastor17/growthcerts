@@ -1,0 +1,13 @@
+{{ define "main" }}
+{{- partial "cert-nav.html" . -}}
+<article class="container page-single">
+  {{ partial "breadcrumb.html" . }}
+  <header class="page-head">
+    <h1 class="page-title">{{ with .Params.emoji }}<span class="h-emoji" aria-hidden="true">{{ . }}</span>{{ end }}{{ .Title }}</h1>
+    {{- with .Params.description -}}<p class="page-subtitle">{{ . }}</p>{{- end -}}
+  </header>
+  <div class="prose prose--article">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

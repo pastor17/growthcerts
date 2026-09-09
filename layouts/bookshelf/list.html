@@ -1,0 +1,21 @@
+{{ define "main" }}
+{{- partial "cert-nav.html" . -}}
+<div class="container page-single">
+  {{ partial "breadcrumb.html" . }}
+  <header class="page-head">
+    <h1 class="page-title">{{ with .Params.emoji }}<span class="h-emoji" aria-hidden="true">{{ . }}</span>{{ end }}{{ .Title }}</h1>
+    {{- with .Params.description -}}<p class="page-subtitle">{{ . }}</p>{{- end -}}
+  </header>
+  {{- with .Content -}}<div class="prose prose--article">{{ . }}</div>{{- end -}}
+  {{- $books := where .Pages "Type" "book" -}}
+  {{- if gt (len $books) 0 -}}
+  <div class="card-grid card-grid--top">
+    {{- range $books.ByWeight -}}
+      {{ partial "book-card.html" . }}
+    {{- end -}}
+  </div>
+  {{- else -}}
+  <p class="empty">📚 书籍整理中，敬请期待～</p>
+  {{- end -}}
+</div>
+{{ end }}

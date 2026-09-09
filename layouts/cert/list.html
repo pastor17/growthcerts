@@ -1,0 +1,139 @@
+{{ define "main" }}
+{{- $slug := "" -}}
+{{- with .File }}{{ $slug = index (split .Dir "/") 0 }}{{ end -}}
+{{- $color := .Params.color | default "#3a6fd8" -}}
+{{- $bank := index site.Data.questions $slug -}}
+{{- $books := where (where site.AllPages "Type" "book") "Params.cert" $slug -}}
+{{- $chapters := where (where site.RegularPages "Type" "chapter") "Params.cert" $slug -}}
+{{- $news := where (where site.RegularPages "Type" "news") "Params.cert" $slug -}}
+{{- $shelf := site.GetPage (printf "%s/books/_index.md" $slug) -}}
+{{- $practicePage := site.GetPage (printf "%s/practice/_index.md" $slug) -}}
+{{- $qNum := 0 -}}{{ if $bank }}{{ $qNum = len $bank }}{{ end -}}
+
+{{- partial "cert-nav.html" . -}}
+
+<section class="cert-hero" style="--cert-color: {{ $color }}">
+  <div class="container">
+    <div class="cert-hero__inner">
+      <span class="cert-hero__emoji" aria-hidden="true">{{ .Params.emoji | default "🏆" }}</span>
+      <div class="cert-hero__main">
+        <p class="cert-hero__eyebrow">{{ .Params.field }} · {{ .Params.level }}</p>
+        <h1 class="cert-hero__title">{{ .Title }}</h1>
+        <p class="cert-hero__desc">{{ .Params.description }}</p>
+        <div class="cert-hero__meta">
+          {{- with .Params.examcycle }}<span class="chip chip--invert">🗓️ {{ . }}</span>{{ end -}}
+          {{- with .Params.enrollperiod }}<span class="chip chip--invert">✍️ {{ . }}</span>{{ end -}}
+        </div>
+        <div class="cert-hero__actions">
+          {{- with $shelf }}<a class="btn btn--invert" href="{{ .RelPermalink }}">📚 书籍库 · 开始学习</a>{{ end -}}
+          {{- with $practicePage }}<a class="btn btn--ghost-invert" href="{{ .RelPermalink }}">🎯 题库练习</a>{{ end -}}
+          {{- with .Params.official -}}
+          <a class="btn btn--ghost-invert" href="{{ . }}" target="_blank" rel="noopener">官网 ↗</a>
+          {{- end -}}
+        </div>
+      </div>
+      <div class="cert-hero__stats">
+        <div class="stat"><strong>{{ len $books }}</strong><span>本备考书</span></div>
+        <div class="stat"><strong>{{ len $chapters }}</strong><span>个章节</span></div>
+        <div class="stat"><strong>{{ $qNum }}</strong><span>道例题</span></div>
+        <div class="stat"><strong>{{ len $news }}</strong><span>条动态</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{- if or (gt (len .Sections) 0) (gt (len .RegularPages) 0) -}}
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">备考资源</h2>
+    </div>
+    <div class="res-grid">
+      {{- range .Sections.ByWeight -}}
+        {{- $count := "" -}}
+        {{- if eq .Type "bookshelf" -}}{{- $count = printf "%d 本 · %d 章" (len $books) (len $chapters) -}}
+        {{- else if eq .Type "practice" -}}{{- if $bank }}{{- $count = printf "%d 道示例题" $qNum -}}{{- else }}{{- $count = "题库整理中" -}}{{- end -}}
+        {{- else if eq .Type "news" -}}{{- $count = printf "%d 条动态" (len $news) -}}
+        {{- end -}}
+        <a class="res-card" href="{{ .RelPermalink }}" style="--res-color: {{ $color }}">
+          <span class="res-card__emoji" aria-hidden="true">{{ .Params.emoji | default "📦" }}</span>
+          <div class="res-card__body">
+            <h3>{{ .Title }}</h3>
+            <p>{{ .Params.description | default .Summary | plainify | truncate 70 }}</p>
+            <span class="res-card__count">{{ $count }}</span>
+          </div>
+        </a>
+      {{- end -}}
+    </div>
+  </div>
+</section>
+{{- end -}}
+
+{{- if gt (len .RegularPages) 0 -}}
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">了解证书</h2>
+    </div>
+    <div class="res-grid res-grid--sm">
+      {{- range .RegularPages.ByWeight -}}
+        <a class="res-card" href="{{ .RelPermalink }}" style="--res-color: {{ $color }}">
+          <span class="res-card__emoji" aria-hidden="true">{{ .Params.emoji | default "📄" }}</span>
+          <div class="res-card__body">
+            <h3>{{ .Title }}</h3>
+            <p>{{ .Params.description | default .Summary | plainify | truncate 70 }}</p>
+          </div>
+        </a>
+      {{- end -}}
+    </div>
+  </div>
+</section>
+{{- end -}}
+
+{{- if gt (len $books) 0 -}}
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">书籍库</h2>
+      {{- with $shelf }}<a class="section__more" href="{{ .RelPermalink }}">全部书籍 →</a>{{ end -}}
+    </div>
+    <div class="card-grid">
+      {{- range first 3 $books.ByWeight -}}
+        {{ partial "book-card.html" . }}
+      {{- end -}}
+    </div>
+  </div>
+</section>
+{{- end -}}
+
+{{- if gt (len $news) 0 -}}
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">最新动态</h2>
+      {{- $newsPage := site.GetPage (printf "%s/news/_index.md" $slug) -}}
+      {{- with $newsPage }}<a class="section__more" href="{{ .RelPermalink }}">全部动态 →</a>{{ end -}}
+    </div>
+    <div class="link-list">
+      {{- range first 3 $news.ByDate.Reverse -}}
+        <a class="link-list__item" href="{{ .RelPermalink }}">
+          <span class="link-list__emoji" aria-hidden="true">📣</span>
+          <span class="link-list__body">
+            <strong>{{ .Title }}</strong>
+            <small>{{ .Date.Format "2006-01-02" }} · {{ with .Params.description }}{{ . }}{{ end }}</small>
+          </span>
+        </a>
+      {{- end -}}
+    </div>
+  </div>
+</section>
+{{- end -}}
+
+{{- with .Content -}}
+<section class="section">
+  <div class="container">
+    <div class="prose prose--wide">{{ . }}</div>
+  </div>
+</section>
+{{- end -}}
+{{ end }}

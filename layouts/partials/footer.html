@@ -1,0 +1,26 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__about">
+        <h2>🎓 {{ site.Title }}</h2>
+        <p>{{ site.Params.description }}</p>
+        <p class="site-footer__contact">📮 联系邮箱：<a href="mailto:{{ site.Params.contactEmail }}">{{ site.Params.contactEmail }}</a></p>
+      </div>
+      <div class="site-footer__col">
+        <h3>证书库</h3>
+        {{ range site.Sections }}
+          <a href="{{ .RelPermalink }}">{{ with .Params.emoji }}{{ . }} {{ end }}{{ .Title }}</a>
+        {{ else }}
+          <span class="site-footer__soon">证书陆续上线中…</span>
+        {{ end }}
+      </div>
+      <div class="site-footer__col">
+        <h3>站点</h3>
+        <a href="{{ site.Home.RelPermalink }}">首页</a>
+        <a href="{{ "about/" | relURL }}">关于本站</a>
+        <a href="{{ "about/" | relURL }}#纠错与投稿">纠错与投稿</a>
+      </div>
+    </div>
+    <p class="site-footer__copyright">{{ site.Params.copyright }} · 站内书籍与题库为原创整理/示例，引用内容版权归原作者所有。</p>
+  </div>
+</footer>

@@ -1,0 +1,29 @@
+{{ define "main" }}
+{{- partial "cert-nav.html" . -}}
+<div class="container page-single">
+  {{ partial "breadcrumb.html" . }}
+  <header class="page-head">
+    <h1 class="page-title">{{ with .Params.emoji }}<span class="h-emoji" aria-hidden="true">{{ . }}</span>{{ end }}{{ .Title }}</h1>
+    {{- with .Params.description -}}<p class="page-subtitle">{{ . }}</p>{{- end -}}
+  </header>
+  {{- with .Content -}}<div class="prose prose--article">{{ . }}</div>{{- end -}}
+
+  {{- $items := where .RegularPages "Type" "news" -}}
+  {{- if gt (len $items) 0 -}}
+  <div class="news-list">
+    {{- range $items.ByDate.Reverse -}}
+    <article class="news-item">
+      <a class="news-item__title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      <p class="news-item__meta">
+        {{ .Date.Format "2006-01-02" }}
+        {{- with .Params.sourceUrl }} · 来源：<a href="{{ . }}" target="_blank" rel="noopener">{{ with $.Params.sourceName }}{{ . }}{{ else }}官方{{ end }}</a>{{ end -}}
+      </p>
+      {{- with .Params.description -}}<p class="news-item__desc">{{ . }}</p>{{- end -}}
+    </article>
+    {{- end -}}
+  </div>
+  {{- else -}}
+  <p class="empty">动态整理中，敬请期待～</p>
+  {{- end -}}
+</div>
+{{ end }}

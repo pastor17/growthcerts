@@ -1,0 +1,33 @@
+{{- /* 证书内页顶部标签导航。上下文：证书体系下的任意页面 */ -}}
+{{- $seg := "" -}}
+{{- with .File }}{{ $seg = index (split .Dir "/") 0 }}{{ end -}}
+{{- if and $seg (not .IsHome) -}}
+  {{- $root := site.GetPage (printf "%s/_index.md" $seg) -}}
+  {{- with $root -}}
+  <div class="cert-nav-wrap">
+    <div class="container">
+      <nav class="cert-nav" aria-label="证书内导航">
+        {{- $items := slice -}}
+        {{- $items = $items | append (dict "page" $root "label" "证书首页" "emoji" .Params.emoji) -}}
+        {{- $guides := dict "intro" "证书百科" "exam-guide" "报考指南" "syllabus" "大纲与教材" -}}
+        {{- range $name, $label := $guides -}}
+          {{- with site.GetPage (printf "%s/%s.md" $seg $name) -}}
+            {{- $items = $items | append (dict "page" . "label" $label "emoji" .Params.emoji) -}}
+          {{- end -}}
+        {{- end -}}
+        {{- $sections := dict "books" "书籍库" "practice" "题库" "news" "动态" -}}
+        {{- range $name, $label := $sections -}}
+          {{- with site.GetPage (printf "%s/%s/_index.md" $seg $name) -}}
+            {{- $items = $items | append (dict "page" . "label" $label "emoji" .Params.emoji) -}}
+          {{- end -}}
+        {{- end -}}
+        {{- range $items -}}
+          <a class="cert-nav__tab{{ if eq .page.RelPermalink $.RelPermalink }} is-active{{ end }}" href="{{ .page.RelPermalink }}">
+            <span class="cert-nav__emoji" aria-hidden="true">{{ .emoji | default "•" }}</span>{{ .label }}
+          </a>
+        {{- end -}}
+      </nav>
+    </div>
+  </div>
+  {{- end -}}
+{{- end -}}
