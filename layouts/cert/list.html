@@ -42,6 +42,29 @@
   </div>
 </section>
 
+{{- $zc := site.GetPage "zhichang/_index.md" -}}
+{{- with $zc -}}
+<section class="section" style="padding-top: 0">
+  <div class="container">
+    <div class="guide-callout">
+      <div class="guide-callout__main">
+        <p class="guide-callout__eyebrow">🧭 第一次考这个证？先花 20 分钟看方法</p>
+        <h2 class="guide-callout__title">职场考证指南：选对证 · 挤出时间 · 记得住</h2>
+        <p class="guide-callout__desc">上班族最容易踩的坑不是「不努力」，而是选错证、计划排太满、只学不练、报名条件没核清。这里给的是可执行清单与模板。</p>
+      </div>
+      <div class="guide-callout__links">
+        <a href="{{ "zhichang/xuan-zheng/" | relURL }}">🎯 怎么选证书</a>
+        <a href="{{ "zhichang/shijian/" | relURL }}">⏱️ 上班族时间表</a>
+        <a href="{{ "zhichang/jiyi/" | relURL }}">🧠 记得住的方法</a>
+        <a href="{{ "zhichang/baoming/" | relURL }}">📋 报名与政策实务</a>
+        <a href="{{ "zhichang/wenti/" | relURL }}">❓ 职场人 30 问</a>
+        <a class="guide-callout__more" href="{{ .RelPermalink }}">全部指南 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+{{- end -}}
+
 {{- if or (gt (len .Sections) 0) (gt (len .RegularPages) 0) -}}
 <section class="section">
   <div class="container">

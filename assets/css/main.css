@@ -601,3 +601,62 @@ a.chip:hover { border-color: var(--primary); color: var(--primary-dark); text-de
   body { background: #fff; }
   .cert-hero, .hero { background: #fff !important; color: #000 !important; }
 }
+
+/* ===== 证书页内的「职场考证指南」引导条 ===== */
+.guide-callout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 20px 28px;
+  align-items: center;
+  padding: 22px 26px;
+  border: 1px solid var(--border);
+  border-left: 4px solid #0f766e;
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.guide-callout__eyebrow {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f766e;
+}
+.guide-callout__title {
+  margin: 0 0 8px;
+  font-size: 20px;
+  line-height: 1.35;
+}
+.guide-callout__desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+.guide-callout__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-start;
+}
+.guide-callout__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 12px;
+  font-size: 13px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-alt, #f6f8fc);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+.guide-callout__links a:hover {
+  border-color: #0f766e;
+  color: #0f766e;
+  background: #effcf9;
+}
+.guide-callout__more { font-weight: 600; }
+@media (max-width: 860px) {
+  .guide-callout { grid-template-columns: 1fr; padding: 18px; }
+}
