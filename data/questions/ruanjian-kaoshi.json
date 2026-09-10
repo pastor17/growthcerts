@@ -2198,5 +2198,203 @@
       "C": "两者在连接性、可靠性与开销上差别明显。",
       "D": "视频直播为实时性牺牲可靠性，通常使用 UDP。"
     }
+  },
+  {
+    "id": "rk-zhishi-ch14-004",
+    "chapter": "数据库与数据集成",
+    "subject": "综合知识",
+    "type": "single",
+    "difficulty": 2,
+    "source": "chapter",
+    "stem": "订单表中的客户号字段引用了客户表的主键。该约束属于？",
+    "options": [
+      "实体完整性",
+      "参照完整性",
+      "用户定义完整性",
+      "域完整性"
+    ],
+    "answer": "B",
+    "analysis": "外键引用被引用表主键的约束属于参照完整性；主键非空唯一是实体完整性；业务规则属用户定义完整性。",
+    "explain": {
+      "A": "实体完整性约束的是主键（非空且唯一）。",
+      "C": "用户定义完整性对应具体业务规则（如年龄范围）。",
+      "D": "域完整性约束的是列的取值范围，不是外键引用关系。"
+    }
+  },
+  {
+    "id": "rk-zhishi-ch14-005",
+    "chapter": "数据库与数据集成",
+    "subject": "综合知识",
+    "type": "single",
+    "difficulty": 1,
+    "source": "chapter",
+    "stem": "数据库三级模式中，描述全体数据整体逻辑结构的是？",
+    "options": [
+      "外模式",
+      "模式（概念模式）",
+      "内模式",
+      "存储模式"
+    ],
+    "answer": "B",
+    "analysis": "模式（概念模式）描述全体数据的逻辑结构；外模式是面向用户/应用的局部视图；内模式描述物理存储方式。",
+    "explain": {
+      "A": "外模式是单个用户或应用看到的数据视图。",
+      "C": "内模式描述数据在介质上的存储与索引组织。",
+      "D": "存储模式即内模式的另一种说法，不是全体逻辑结构。"
+    }
+  },
+  {
+    "id": "rk-zhishi-ch14-006",
+    "chapter": "数据库与数据集成",
+    "subject": "综合知识",
+    "type": "single",
+    "difficulty": 2,
+    "source": "chapter",
+    "stem": "事务并发执行时，一个事务读到了另一个事务尚未提交的数据。这种现象称为？",
+    "options": [
+      "脏读",
+      "不可重复读",
+      "幻读",
+      "死锁"
+    ],
+    "answer": "A",
+    "analysis": "脏读＝读到未提交数据；不可重复读＝同一事务内两次读同一数据结果不同；幻读＝两次查询行数变化；死锁＝互相等待资源。",
+    "explain": {
+      "B": "不可重复读是别人修改并提交后，本事务再读结果不一致。",
+      "C": "幻读强调记录条数变化（新增/删除）。",
+      "D": "死锁是两个事务互相持锁等待，不是读取问题。"
+    }
+  },
+  {
+    "id": "rk-zhishi-ch15-004",
+    "chapter": "软件工程与测试基础",
+    "subject": "综合知识",
+    "type": "single",
+    "difficulty": 2,
+    "source": "chapter",
+    "stem": "在 V 模型中，与「需求分析」阶段相对应的测试级别是？",
+    "options": [
+      "单元测试",
+      "集成测试",
+      "系统测试",
+      "验收测试"
+    ],
+    "answer": "D",
+    "analysis": "V 模型对应关系：需求—验收测试、设计—系统测试、详细设计—集成测试、编码—单元测试。",
+    "explain": {
+      "A": "单元测试对应编码阶段。",
+      "B": "集成测试对应详细设计。",
+      "C": "系统测试对应概要/系统设计。"
+    }
+  },
+  {
+    "id": "rk-zhishi-ch15-005",
+    "chapter": "软件工程与测试基础",
+    "subject": "综合知识",
+    "type": "single",
+    "difficulty": 2,
+    "source": "chapter",
+    "stem": "下列白盒测试覆盖标准中，要求（强度）最高的是？",
+    "options": [
+      "语句覆盖",
+      "判定覆盖",
+      "条件覆盖",
+      "路径覆盖"
+    ],
+    "answer": "D",
+    "analysis": "覆盖强度由弱到强：语句覆盖 ＜ 判定（分支）覆盖 ＜ 条件覆盖 ＜ 判定/条件覆盖 ＜ 路径覆盖。",
+    "explain": {
+      "A": "语句覆盖只要求每条语句执行一次，强度最弱。",
+      "B": "判定覆盖强于语句覆盖但弱于路径覆盖。",
+      "C": "条件覆盖针对判定中的每个条件取值，仍弱于路径覆盖。"
+    }
+  },
+  {
+    "id": "rk-zhishi-ch15-006",
+    "chapter": "软件工程与测试基础",
+    "subject": "综合知识",
+    "type": "single",
+    "difficulty": 1,
+    "source": "chapter",
+    "stem": "为适应数据库版本升级而对现有软件进行的修改，属于哪种维护？",
+    "options": [
+      "改正性维护",
+      "适应性维护",
+      "改善性维护",
+      "预防性维护"
+    ],
+    "answer": "B",
+    "analysis": "为适应外部环境（操作系统、数据库、法规等）变化而做的修改属于适应性维护。",
+    "explain": {
+      "A": "改正性维护是修复已发现的缺陷。",
+      "C": "改善性维护是增强功能或提升性能。",
+      "D": "预防性维护是重构、补文档以防患未然。"
+    }
+  },
+  {
+    "id": "rk-zhishi-ch16-003",
+    "chapter": "专业英语与应试技巧",
+    "subject": "综合知识",
+    "type": "single",
+    "difficulty": 2,
+    "source": "chapter",
+    "stem": "Which document formally authorizes the existence of a project and gives the project manager authority to apply organizational resources?",
+    "options": [
+      "Project charter",
+      "Scope statement",
+      "Work breakdown structure",
+      "Business case"
+    ],
+    "answer": "A",
+    "analysis": "关键词 formally authorizes + authority to the project manager 正是项目章程（Project charter）的定义。",
+    "explain": {
+      "B": "Scope statement 描述项目范围，不授予授权。",
+      "C": "WBS 是对可交付成果的分解结构。",
+      "D": "Business case 论证项目价值，位于章程之前。"
+    }
+  },
+  {
+    "id": "rk-zhishi-ch16-004",
+    "chapter": "专业英语与应试技巧",
+    "subject": "综合知识",
+    "type": "single",
+    "difficulty": 1,
+    "source": "chapter",
+    "stem": "In project management, the term stakeholder most nearly means:",
+    "options": [
+      "股东",
+      "受项目影响或能影响项目的个人或组织",
+      "供应商",
+      "最终用户"
+    ],
+    "answer": "B",
+    "analysis": "stakeholder（干系人）指受项目影响或能影响项目的个人、群体或组织，范围大于股东、供应商与最终用户。",
+    "explain": {
+      "A": "股东只是干系人的一种，不是定义。",
+      "C": "供应商属于外部干系人之一，定义更宽。",
+      "D": "最终用户也只是干系人的一部分。"
+    }
+  },
+  {
+    "id": "rk-zhishi-ch16-005",
+    "chapter": "专业英语与应试技巧",
+    "subject": "综合知识",
+    "type": "single",
+    "difficulty": 2,
+    "source": "chapter",
+    "stem": "Which of the following is NOT one of the ten knowledge areas of project management?",
+    "options": [
+      "Procurement management",
+      "Risk management",
+      "Lessons learned management",
+      "Quality management"
+    ],
+    "answer": "C",
+    "analysis": "十大知识领域不包含 Lessons learned management（经验教训管理）；经验教训是各过程与收尾阶段的产物。",
+    "explain": {
+      "A": "Procurement management（采购管理）是十大领域之一。",
+      "B": "Risk management（风险管理）是十大领域之一。",
+      "D": "Quality management（质量管理）是十大领域之一。"
+    }
   }
 ]
