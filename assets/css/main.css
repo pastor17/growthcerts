@@ -660,3 +660,17 @@ a.chip:hover { border-color: var(--primary); color: var(--primary-dark); text-de
 @media (max-width: 860px) {
   .guide-callout { grid-template-columns: 1fr; padding: 18px; }
 }
+
+/* 首页 hero 内的职场指南文字入口（非卡片式展示） */
+.hero__note {
+  margin: 14px 0 0;
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, .78);
+}
+.hero__note a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.hero__note a:hover { color: #ffe9a8; }

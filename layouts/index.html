@@ -22,6 +22,9 @@
       <a class="btn btn--invert" href="{{ site.Home.RelPermalink }}#certs">🏆 开始备考</a>
       <a class="btn btn--ghost-invert" href="{{ "about/" | relURL }}">了解本站</a>
     </div>
+    {{- with site.GetPage "zhichang/_index.md" -}}
+    <p class="hero__note">🧭 上班族备考方法（选证 · 排时间 · 记得住 · 报名与收益）：<a href="{{ .RelPermalink }}">职场考证指南 →</a></p>
+    {{- end -}}
     <div class="hero__stats">
       <div class="stat"><strong>{{ len $certs }}</strong><span>个证书体系</span></div>
       <div class="stat"><strong>{{ len $books }}</strong><span>本备考书</span></div>
@@ -50,20 +53,6 @@
 </section>
 
 <section class="section section--alt">
-  <div class="container">
-    <div class="section__head">
-      <h2 class="section__title">职场考证指南</h2>
-      <span class="section__more">时间少、要选证、怕白考？先看这里</span>
-    </div>
-    <div class="cert-grid">
-      {{- range $guides.ByWeight -}}
-        {{ partial "cert-card.html" . }}
-      {{- end -}}
-    </div>
-  </div>
-</section>
-
-<section class="section">
   <div class="container">
     <div class="section__head">
       <h2 class="section__title">为什么这样组织</h2>
