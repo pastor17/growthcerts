@@ -92,27 +92,6 @@
 </section>
 {{- end -}}
 
-{{- if gt (len .RegularPages) 0 -}}
-<section class="section section--alt">
-  <div class="container">
-    <div class="section__head">
-      <h2 class="section__title">了解证书</h2>
-    </div>
-    <div class="res-grid res-grid--sm">
-      {{- range .RegularPages.ByWeight -}}
-        <a class="res-card" href="{{ .RelPermalink }}" style="--res-color: {{ $color }}">
-          <span class="res-card__emoji" aria-hidden="true">{{ .Params.emoji | default "📄" }}</span>
-          <div class="res-card__body">
-            <h3>{{ .Title }}</h3>
-            <p>{{ .Params.description | default .Summary | plainify | truncate 70 }}</p>
-          </div>
-        </a>
-      {{- end -}}
-    </div>
-  </div>
-</section>
-{{- end -}}
-
 {{- if gt (len $books) 0 -}}
 <section class="section">
   <div class="container">
