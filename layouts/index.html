@@ -1,5 +1,6 @@
 {{ define "main" }}
-{{- $certs := site.Sections -}}
+{{- $certs := where site.Sections "Params.type" "cert" -}}
+{{- $guides := where site.Sections "Params.type" "guidehome" -}}
 {{- $books := where site.AllPages "Type" "book" -}}
 {{- $chapters := where site.RegularPages "Type" "chapter" -}}
 {{- $totalQ := 0 -}}
@@ -49,6 +50,20 @@
 </section>
 
 <section class="section section--alt">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">职场考证指南</h2>
+      <span class="section__more">时间少、要选证、怕白考？先看这里</span>
+    </div>
+    <div class="cert-grid">
+      {{- range $guides.ByWeight -}}
+        {{ partial "cert-card.html" . }}
+      {{- end -}}
+    </div>
+  </div>
+</section>
+
+<section class="section">
   <div class="container">
     <div class="section__head">
       <h2 class="section__title">为什么这样组织</h2>

@@ -8,12 +8,15 @@
     <div class="container">
       <nav class="cert-nav" aria-label="证书内导航">
         {{- $items := slice -}}
-        {{- $items = $items | append (dict "page" $root "label" "证书首页" "emoji" .Params.emoji) -}}
+        {{- $items = $items | append (dict "page" $root "label" ($root.Params.navRootLabel | default "证书首页") "emoji" .Params.emoji) -}}
         {{- $guides := dict "intro" "证书百科" "exam-guide" "报考指南" "syllabus" "大纲与教材" "resources" "学习资源" -}}
         {{- range $name, $label := $guides -}}
           {{- with site.GetPage (printf "%s/%s.md" $seg $name) -}}
-            {{- $items = $items | append (dict "page" . "label" $label "emoji" .Params.emoji) -}}
+            {{- $items = $items | append (dict "page" . "label" (.Params.navLabel | default $label) "emoji" .Params.emoji) -}}
           {{- end -}}
+        {{- end -}}
+        {{- range (where $root.RegularPages "Params.navTab" true).ByWeight -}}
+          {{- $items = $items | append (dict "page" . "label" (.Params.navLabel | default .Title) "emoji" .Params.emoji) -}}
         {{- end -}}
         {{- $sections := dict "books" "书籍库" "practice" "题库" "news" "动态" -}}
         {{- range $name, $label := $sections -}}

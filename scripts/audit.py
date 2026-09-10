@@ -51,7 +51,8 @@ if not os.path.exists(idx):
     errors.append(f"缺少证书主页 content/{SLUG}/_index.md")
 else:
     p, _ = fm(idx)
-    check(p.get("type") == "cert", f"{SLUG}/_index.md 的 type 应为 cert")
+    check(p.get("type") in ("cert", "guidehome"),
+          f"{SLUG}/_index.md 的 type 应为 cert 或 guidehome（指南型栏目）")
 
 # 2) 题库文件
 qpath = os.path.join(ROOT, "data", "questions", f"{SLUG}.json")

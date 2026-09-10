@@ -1,0 +1,60 @@
+{{ define "main" }}
+{{- partial "cert-nav.html" . -}}
+{{- $seg := "" -}}
+{{- with .File }}{{ $seg = index (split .Dir "/") 0 }}{{ end -}}
+{{- $guides := where .RegularPages "Params.navTab" true -}}
+{{- $books := where (where site.AllPages "Type" "book") "Params.cert" $seg -}}
+{{- $q := index site.Data.questions $seg -}}
+{{- $qNum := 0 -}}{{ if $q }}{{ $qNum = len $q }}{{ end -}}
+
+<section class="page-hero" style="--cert-color: {{ .Params.color | default "#0f766e" }}">
+  <div class="container page-hero__inner">
+    <p class="page-hero__eyebrow">{{ with .Params.emoji }}<span aria-hidden="true">{{ . }}</span> {{ end }}{{ .Params.field | default "职场通用" }}</p>
+    <h1 class="page-hero__title">{{ .Title }}</h1>
+    {{- with .Params.description -}}<p class="page-hero__desc">{{ . }}</p>{{- end -}}
+    <div class="hero__stats">
+      <div class="stat"><strong>{{ len $guides }}</strong><span>篇职场指南</span></div>
+      <div class="stat"><strong>{{ len $books }}</strong><span>本方法论</span></div>
+      <div class="stat"><strong>{{ $qNum }}</strong><span>道情境题</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="container page-single">
+  {{- with .Content -}}<div class="prose prose--article">{{ . }}</div>{{- end -}}
+</div>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">职场指南</h2>
+      <span class="section__more">按"职场人真实处境"写的可执行清单</span>
+    </div>
+    <div class="feature-grid">
+      {{- range $guides.ByWeight -}}
+      <a class="feature-card feature-card--link" href="{{ .RelPermalink }}">
+        <span class="feature-card__emoji" aria-hidden="true">{{ .Params.emoji | default "📄" }}</span>
+        <h3>{{ .Title }}</h3>
+        <p>{{ .Params.description | default (.Summary | plainify) | truncate 110 }}</p>
+      </a>
+      {{- end -}}
+    </div>
+  </div>
+</section>
+
+{{- if gt (len $books) 0 -}}
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">方法论书</h2>
+      <span class="section__more">学一章、练一章</span>
+    </div>
+    <div class="book-grid">
+      {{- range $books.ByWeight -}}
+        {{ partial "book-card.html" . }}
+      {{- end -}}
+    </div>
+  </div>
+</section>
+{{- end -}}
+{{ end }}
