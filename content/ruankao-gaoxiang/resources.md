@@ -29,6 +29,12 @@ weight: 40
 - [ruankaodaren/ruankao](https://github.com/ruankaodaren/ruankao)（2013★ · MIT · 2026-03-08）：全科大纲 + 高级/中级官方教材 PDF；
 - [wangyongtao/ruankao_itpm_guide](https://github.com/wangyongtao/ruankao_itpm_guide)（592★ · 2022-04）：Markdown 版备考指南，含**论文与案例专章**，适合文字型学习者（年份较早）。
 
+### 5. 高项（第四版教程）知识点整理 · 开源文档站
+- 仓库：[beiding110/Info-System-PMP](https://github.com/beiding110/Info-System-PMP) ｜ 核验：**GPL-3.0 许可 · 最近更新 2024-12-26 · 约 18MB**
+- 内含：基于 **2023 年第四版官方教程**的知识点整理（文档站 + 可搜索 PDF），涵盖绩效域等新版内容，另含历年真题资料
+- 适合：核对第四版教程知识结构与绩效域考点
+- 注意：**GPL-3.0 许可**，可学习使用与再分发但需遵守该许可条款（保留许可与来源），请勿用于闭源商业产品
+
 ## 下载方式
 
 ```bash
