@@ -6,7 +6,7 @@ bookType: "认证精讲（自编）"
 description: "6 章：考试全景与报名、原则与绩效域、启动整合治理、范围进度成本、质量资源沟通、风险采购与情景应试；预测型与敏捷并列讲解。"
 publisher: "考证宝典（原创整理）"
 isbn: "示例 · 非正式出版"
-edition: "第 1 版（编写中）"
+edition: "第 1 版"
 coverEmoji: "🏅"
 color: "#1a73c7"
 weight: 10
