@@ -20,7 +20,7 @@ disableHugoGeneratorInject = true
   author = '考证宝典编辑部'
   siteName = '考证宝典'
   copyright = '© 2026 考证宝典'
-  contactEmail = 'editor@example.com'   # 改成你的联系邮箱
+  contactEmail = 'irudder@126.com'   # 站内联系邮箱（页脚 / 关于本站 / 纠错与投稿）
   defaultEmoji = '🎓'
   # 内容为示例/原创整理，引用官方教材内容请自行核对版权
 
