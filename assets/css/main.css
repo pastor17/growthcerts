@@ -674,3 +674,20 @@ a.chip:hover { border-color: var(--primary); color: var(--primary-dark); text-de
   text-underline-offset: 3px;
 }
 .hero__note a:hover { color: #ffe9a8; }
+
+/* ===== 反爬蜜罐：视觉隐藏但对 HTML 解析器可见（不使用 display:none，避免被简单规则过滤） ===== */
+.honeypot {
+  position: absolute !important;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* 页脚许可与不可见水印 */
+.site-footer__license { display: block; margin-top: 6px; }
+.site-footer__license a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.wm { font-size: 0; line-height: 0; }

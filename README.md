@@ -52,6 +52,33 @@
 
 **后续路线**：① 社工中级《社会工作法规与政策》《社会工作实务（中级）》补全，冲击中级三科齐备；② 一建实务增补机电/公路等专业方向，二建实务增补市政方向；③ 各证书题库继续加量至真实考情（软考中项 163 题为最多，其余证书继续按考情补量）；④ 官方动态持续复检（软考下半年批次安排待官网发布）。
 
+## 内容保护（反抓取）
+
+站点托管在 **GitHub Pages（纯静态）**，没有服务端逻辑、不能改响应头、也没有访问日志，因此**无法从技术上"封住"爬虫**。本站采取的是"**声明 + 追溯 + 可配合前置 CDN 拦截**"的组合策略：
+
+| 措施 | 实现位置 | 说明 |
+|------|---------|------|
+| **许可声明** | `content/license.md` + 全站 `<link rel="license">` | 内容采用 **CC BY-NC-SA 4.0**；商业使用（含商业性 AI 训练）须授权；页脚与「关于本站」均有入口 |
+| **AI 抓取声明** | `layouts/partials/head.html` | `meta robots` 含 `noai, noimageai`（表达不使用于 AI 训练的请求；不影响 Google/Bing 收录） |
+| **页级不可见水印** | `layouts/partials/watermark.html` + 页脚 `.wm` 容器 | 把 `sha256(RelPermalink)[:16]` 编码为 U+200B/200C/200D/FEFF 序列（U+2060 定界），内容被搬运后可用于**追溯来源**；id 与 baseURL 绑定，**建索引必须用线上一致的 baseURL 构建** |
+| **水印解码工具** | `scripts/decode_watermark.py` | 先 `hugo --baseURL https://pastor17.github.io/growthcerts/ --destination /tmp/kz-prod` 再用 `--build /tmp/kz-prod` 建索引（id → URL），随后用 `--decode <file>` 或 `--text "…"` 从疑似搬运内容中提取并匹配来源页（344 页已验证可回环匹配） |
+| **蜜罐诱饵链接** | `layouts/partials/honeypot.html` + `.honeypot` 样式 | 3 个对真人不可见、`rel="nofollow"` 的诱饵链接（`/only-for-crawlers/…`），被"一键扒站"脚本跟随；**接入 Cloudflare 后可直接对这些路径拦截** |
+| **robots.txt** | 保持 Hugo 默认（未定制） | 按项目要求不添加自定义规则 |
+
+### 如需进一步拦截（可选，需域名侧操作）
+
+GitHub Pages 本身拦不住任何请求，若要"能拦能挑战"，需要在前置一层 CDN 上做（以 Cloudflare 免费版为例）：
+
+1. 绑定自定义域：Cloudflare DNS 用 **CNAME → pastor17.github.io**，**开启橙色云代理**；SSL/TLS 模式设 **Full (strict)**；GitHub Pages 侧勾选 Enforce HTTPS；
+2. **Security Level = High**、开启 **Bot Fight Mode**；
+3. WAF 自定义规则示例（免费版有规则条数上限）：
+   - 屏蔽 AI 训练抓取：`(http.user_agent contains "Bytespider") or (http.user_agent contains "CCBot") or (http.user_agent contains "GPTBot") or (http.user_agent contains "ClaudeBot")` → **Block**；
+   - 命中蜜罐路径：`http.request.uri.path contains "/only-for-crawlers/"` → **Block**；
+   - 空 UA 且非站内跳转：`(http.user_agent eq "") and (not http.referer contains "pastor17.github.io")` → **Managed Challenge**；
+4. **Rate Limiting**：同一 IP 每分钟请求数 > 60 → Managed Challenge。
+
+> 提醒：`robots.txt`/`meta robots` 只对**守规矩**的爬虫有效；**禁右键/禁复制 JS、UA 黑名单**这类做法对恶意爬虫基本无效（且伤害正常读者体验），本站不做。真正能止损的是**许可声明 + 水印追溯 + 平台投诉（GitHub DMCA / Cloudflare abuse / 搜索引擎 DMCA）**。
+
 ## 目录结构
 
 ```

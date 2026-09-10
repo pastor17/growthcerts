@@ -19,9 +19,14 @@
         <a href="{{ site.Home.RelPermalink }}">首页</a>
         <a href="{{ "zhichang/" | relURL }}">职场考证指南</a>
         <a href="{{ "about/" | relURL }}">关于本站</a>
+        <a href="{{ "license/" | relURL }}">版权与使用条款</a>
         <a href="{{ "about/" | relURL }}#纠错与投稿">纠错与投稿</a>
       </div>
     </div>
-    <p class="site-footer__copyright">{{ site.Params.copyright }} · 站内书籍与题库为原创整理/示例，引用内容版权归原作者所有。</p>
+    <p class="site-footer__copyright">
+      {{ site.Params.copyright }} · 站内书籍与题库为原创整理/示例，引用内容版权归原作者所有。
+      <span class="site-footer__license">内容许可：<a href="{{ "license/" | relURL }}">CC BY-NC-SA 4.0</a>（署名 · 非商业性使用 · 相同方式共享）</span>
+      <span class="wm" aria-hidden="true">{{ partial "watermark.html" . }}</span>
+    </p>
   </div>
 </footer>

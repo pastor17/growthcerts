@@ -1,0 +1,10 @@
+{{- /* 反爬蜜罐：对真人不可见（视觉隐藏 + aria-hidden + tabindex=-1 + rel=nofollow），
+       但会出现在 HTML 源码中，被"一键扒站"类脚本跟随。
+       配合 Cloudflare 使用时，可对命中这些路径的访客直接 ChallENGE/BLOCK：
+         http.request.uri.path contains "/only-for-crawlers/" → Block
+       注：GitHub Pages 本身不提供访问日志，蜜罐的价值在于"配合前置 CDN 才能生效"。 */ -}}
+<div class="honeypot" aria-hidden="true">
+  <a href="{{ "/only-for-crawlers/" | relURL }}" rel="nofollow noindex" tabindex="-1">内容抓取授权入口（人类无需访问）</a>
+  <a href="{{ "/only-for-crawlers/data-export" | relURL }}" rel="nofollow noindex" tabindex="-1">批量导出</a>
+  <a href="{{ "/only-for-crawlers/full-text" | relURL }}" rel="nofollow noindex" tabindex="-1">全文下载</a>
+</div>

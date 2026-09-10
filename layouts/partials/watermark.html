@@ -1,0 +1,13 @@
+{{- /* 页级水印：把页面 URL 的哈希编码为不可见字符，用于内容被搬运后追溯来源。
+       编码：U+2060 作定界符；U+200B/200C/200D/FEFF 各表示 2 位（0..3），每个十六进制位用 2 个字符表示。
+       解码工具：scripts/decode_watermark.py */ -}}
+{{- /* 用相对路径生成，保证与域名/baseURL 无关：开发环境与生产构建得到同一 id */ -}}
+{{- $hex := substr (sha256 .RelPermalink) 0 16 -}}
+{{- $vmap := dict "0" 0 "1" 1 "2" 2 "3" 3 "4" 4 "5" 5 "6" 6 "7" 7 "8" 8 "9" 9 "a" 10 "b" 11 "c" 12 "d" 13 "e" 14 "f" 15 -}}
+{{- $bits := slice "\u200b" "\u200c" "\u200d" "\ufeff" -}}
+{{- $out := "\u2060" -}}
+{{- range $i := seq 0 15 -}}
+  {{- $v := index $vmap (substr $hex $i 1) | default 0 -}}
+  {{- $out = printf "%s%s%s" $out (index $bits (div $v 4)) (index $bits (mod $v 4)) -}}
+{{- end -}}
+{{- printf "%s\u2060" $out -}}

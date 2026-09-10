@@ -13,3 +13,10 @@ node_modules/
 .idea/
 .vscode/
 *.swp
+
+# 水印索引为本地生成物（用 scripts/decode_watermark.py --build 重建）
+watermark-index.json
+
+# Python 缓存
+__pycache__/
+*.pyc
