@@ -65,7 +65,7 @@
 | **许可声明** | `content/license.md` + 全站 `<link rel="license">` | 内容采用 **CC BY-NC-SA 4.0**；商业使用（含商业性 AI 训练）须授权；页脚与「关于本站」均有入口 |
 | **AI 抓取声明** | `layouts/partials/head.html` | `meta robots` 含 `noai, noimageai`（表达不使用于 AI 训练的请求；不影响 Google/Bing 收录） |
 | **页级不可见水印** | `layouts/partials/watermark.html` + 页脚 `.wm` 容器 | 把 `sha256(RelPermalink)[:16]` 编码为 U+200B/200C/200D/FEFF 序列（U+2060 定界），内容被搬运后可用于**追溯来源**；id 与 baseURL 绑定，**建索引必须用线上一致的 baseURL 构建** |
-| **水印解码工具** | `scripts/decode_watermark.py` | 先 `hugo --baseURL https://pastor17.github.io/growthcerts/ --destination /tmp/kz-prod` 再用 `--build /tmp/kz-prod` 建索引（id → URL），随后用 `--decode <file>` 或 `--text "…"` 从疑似搬运内容中提取并匹配来源页（344 页已验证可回环匹配） |
+| **水印解码工具** | `scripts/decode_watermark.py` | 先 `hugo --baseURL https://kaozheng.irudder.me/ --destination /tmp/kz-prod` 再用 `--build /tmp/kz-prod` 建索引（id → URL），随后用 `--decode <file>` 或 `--text "…"` 从疑似搬运内容中提取并匹配来源页（344 页已验证可回环匹配） |
 | **蜜罐诱饵链接** | `layouts/partials/honeypot.html` + `.honeypot` 样式 | 3 个对真人不可见、`rel="nofollow"` 的诱饵链接（`/only-for-crawlers/…`），被"一键扒站"脚本跟随；**接入 Cloudflare 后可直接对这些路径拦截** |
 | **robots.txt** | 保持 Hugo 默认（未定制） | 按项目要求不添加自定义规则 |
 
@@ -177,7 +177,7 @@ git add -A && git commit -m "update"
 git push origin kaozheng
 ```
 
-> `hugo.toml` 的 `baseURL` 已设为 `https://pastor17.github.io/growthcerts/`（项目页）；在仓库 **Settings → Pages → Source** 选 GitHub Actions 即可。
+> `hugo.toml` 的 `baseURL` 已设为 `https://kaozheng.irudder.me/`（项目页）；在仓库 **Settings → Pages → Source** 选 GitHub Actions 即可。
 
 ## 版权
 

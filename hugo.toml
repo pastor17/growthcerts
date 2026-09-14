@@ -4,7 +4,7 @@
 # 部署前把 baseURL 改成真实地址（本地 hugo server 会自动覆盖为 localhost）
 # =============================================================
 
-baseURL = 'https://pastor17.github.io/growthcerts/'
+baseURL = 'https://kaozheng.irudder.me/'
 title = '考证宝典'
 locale = 'zh-CN'
 hasCJKLanguage = true

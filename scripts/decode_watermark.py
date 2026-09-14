@@ -10,7 +10,7 @@
 用法：
     # 1) 先用构建产物建立索引（id -> url）
     #    ⚠️ 必须使用与线上一致的 baseURL 构建，否则 id 对不上：
-    hugo --destination /tmp/kz-prod --baseURL https://pastor17.github.io/growthcerts/
+    hugo --destination /tmp/kz-prod --baseURL https://kaozheng.irudder.me/
     python3 scripts/decode_watermark.py --build /tmp/kz-prod
 
     # 2) 再对疑似搬运的内容（文本文件）解码并匹配

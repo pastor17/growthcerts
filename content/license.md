@@ -27,7 +27,7 @@ weight: 95
 **推荐署名格式**：
 
 ```
-来源：考证宝典《XXX》 https://pastor17.github.io/growthcerts/xxx/
+来源：考证宝典《XXX》 https://kaozheng.irudder.me/xxx/
 许可：CC BY-NC-SA 4.0（如已修改，请注明「已修改」）
 ```
 
