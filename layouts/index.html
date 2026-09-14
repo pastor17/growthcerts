@@ -22,9 +22,10 @@
       <a class="btn btn--invert" href="{{ site.Home.RelPermalink }}#certs">🏆 开始备考</a>
       <a class="btn btn--ghost-invert" href="{{ "about/" | relURL }}">了解本站</a>
     </div>
-    {{- with site.GetPage "zhichang/_index.md" -}}
-    <p class="hero__note">🧭 上班族备考方法（选证 · 排时间 · 记得住 · 报名与收益）：<a href="{{ .RelPermalink }}">职场考证指南 →</a></p>
-    {{- end -}}
+    <p class="hero__note">
+      🧳 找工作与职场：<a href="{{ "qiuzhi/" | relURL }}">简历 · 面试 · 谈薪 · 入职 90 天</a>
+      ｜🧭 备考方法：<a href="{{ "zhichang/" | relURL }}">选证 · 排时间 · 记得住 · 报名与收益</a>
+    </p>
     <div class="hero__stats">
       <div class="stat"><strong>{{ len $certs }}</strong><span>个证书体系</span></div>
       <div class="stat"><strong>{{ len $books }}</strong><span>本备考书</span></div>

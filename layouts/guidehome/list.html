@@ -13,9 +13,9 @@
     <h1 class="page-hero__title">{{ .Title }}</h1>
     {{- with .Params.description -}}<p class="page-hero__desc">{{ . }}</p>{{- end -}}
     <div class="hero__stats">
-      <div class="stat"><strong>{{ len $guides }}</strong><span>篇职场指南</span></div>
-      <div class="stat"><strong>{{ len $books }}</strong><span>本方法论</span></div>
-      <div class="stat"><strong>{{ $qNum }}</strong><span>道情境题</span></div>
+      <div class="stat"><strong>{{ len $guides }}</strong><span>篇指南</span></div>
+      {{- if gt (len $books) 0 }}<div class="stat"><strong>{{ len $books }}</strong><span>本方法论</span></div>{{ end -}}
+      {{- if gt $qNum 0 }}<div class="stat"><strong>{{ $qNum }}</strong><span>道情境题</span></div>{{ end -}}
     </div>
   </div>
 </section>
