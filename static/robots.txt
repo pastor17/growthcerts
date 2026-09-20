@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /?
+
+# AI 爬虫：允许（内容本身已声明 noai 抓取策略，见页内 meta）
+
+# 站点地图
+Sitemap: https://kaozheng.irudder.me/sitemap.xml

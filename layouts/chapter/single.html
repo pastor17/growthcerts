@@ -9,6 +9,8 @@
 {{- with .Params.quizChapter -}}
   {{- if $bank }}{{ $n = len (where $bank "chapter" .) }}{{ end -}}
 {{- end -}}
+{{- /* 本证书下的指南页（用于"相关资源"内链） */ -}}
+{{- $certPages := where (site.GetPage (printf "%s" $slug)).RegularPages "Params.cert" $slug -}}
 
 <article class="container page-single">
   {{ partial "breadcrumb.html" . }}
@@ -33,6 +35,41 @@
       <span>当前收录 {{ $n }} 道示例题，做完即时判分、看解析；错题自动进入错题本。</span>
     </div>
     <a class="btn btn--primary" href="{{ printf "%s?%s" $practicePage.RelPermalink (querify "chapter" .Params.quizChapter) }}">开始本章练习 →</a>
+  </aside>
+  {{- end -}}
+
+  {{- /* 同书相关章节（提升内链密度与页面停留） */ -}}
+  {{- $siblings := $book.RegularPages.ByWeight -}}
+  {{- if gt (len $siblings) 1 -}}
+  <aside class="related-block">
+    <h2 class="related-block__title">📖 同书其他章节</h2>
+    <div class="related-list">
+      {{- range first 4 $siblings -}}
+        {{- if ne .RelPermalink $.RelPermalink -}}
+        <a class="related-list__item" href="{{ .RelPermalink }}">
+          {{ .Title }}
+          {{- with .Params.description }}<small>{{ . }}</small>{{ end -}}
+        </a>
+        {{- end -}}
+      {{- end -}}
+    </div>
+  </aside>
+  {{- end -}}
+
+  {{- /* 同证书相关指南页（报考/大纲/笔记等内链） */ -}}
+  {{- if gt (len $certPages) 0 -}}
+  <aside class="related-block">
+    <h2 class="related-block__title">🧭 本证书更多备考资源</h2>
+    <div class="related-list">
+      {{- range first 4 $certPages -}}
+        {{- if ne .RelPermalink $.RelPermalink -}}
+        <a class="related-list__item" href="{{ .RelPermalink }}">
+          {{- with .Params.emoji }}{{ . }} {{ end -}}{{ .Title }}
+          {{- with .Params.description }}<small>{{ . }}</small>{{ end -}}
+        </a>
+        {{- end -}}
+      {{- end -}}
+    </div>
   </aside>
   {{- end -}}
 

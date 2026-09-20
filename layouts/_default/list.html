@@ -21,4 +21,26 @@
   <p class="empty">内容整理中，敬请期待～</p>
   {{- end -}}
 </div>
+
+{{- /* 指南首页：相关文章（全站通用指南互推，强化内链） */ -}}
+{{- if eq .Params.type "guidehome" -}}
+{{- $otherGuides := where (where site.Sections "Params.type" "guidehome") (ne .RelPermalink .RelPermalink) -}}
+{{- if gt (len $otherGuides) 0 -}}
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">更多指南</h2>
+    </div>
+    <div class="related-list">
+      {{- range $otherGuides.ByWeight -}}
+      <a class="related-list__item" href="{{ .RelPermalink }}">
+        {{- with .Params.emoji }}{{ . }} {{ end -}}{{ .Params.shortname | default .Title }}
+        <small>{{ .Params.description | truncate 40 }}</small>
+      </a>
+      {{- end -}}
+    </div>
+  </div>
+</section>
+{{- end -}}
+{{- end -}}
 {{ end }}

@@ -11,8 +11,34 @@ hasCJKLanguage = true
 summaryLength = 120
 enableEmoji = true
 enableRobotsTXT = true
-disableKinds = ['RSS', 'taxonomy', 'term']
+disableKinds = ['taxonomy', 'term']
 disableHugoGeneratorInject = true
+
+# SEO：sitemap 按页面类型设置优先级与更新频率
+[sitemap]
+  changefreq = 'weekly'
+  filename = 'sitemap.xml'
+  priority = 0.5
+
+  [[sitemap.rank]]
+    bundle = '/_index.md'
+    changefreq = 'daily'
+    priority = 1.0
+
+  [[sitemap.rank]]
+    bundle = '/content/*/_index.md'
+    changefreq = 'weekly'
+    priority = 0.9
+
+  [[sitemap.rank]]
+    bundle = '/content/*/*.md'
+    changefreq = 'monthly'
+    priority = 0.7
+
+  [[sitemap.rank]]
+    bundle = '/content/**/books/**/*.md'
+    changefreq = 'monthly'
+    priority = 0.6
 
 [params]
   subtitle = '职业考证 · 职业技能 · 职场提升'
