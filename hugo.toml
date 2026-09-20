@@ -15,8 +15,8 @@ disableKinds = ['RSS', 'taxonomy', 'term']
 disableHugoGeneratorInject = true
 
 [params]
-  subtitle = '职业考证 · 书库与题库'
-  description = '按证书组织的职业资格考试备考站：报考指南、考点精讲书籍与题库练习一体，学一章、练一章，一本书配一套题。'
+  subtitle = '职业考证 · 职业技能 · 职场提升'
+  description = '按证书与技能组织的职业资格考试与职业技能培训备考站：财会、法律、公考、医护、工程、IT、设计、短视频——报考指南、考点精讲书籍与题库练习一体，学一章、练一章，一本书配一套题。'
   author = '考证宝典编辑部'
   siteName = '考证宝典'
   copyright = '© 2026 考证宝典'

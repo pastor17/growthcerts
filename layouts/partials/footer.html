@@ -8,17 +8,24 @@
       </div>
       <div class="site-footer__col">
         <h3>证书库</h3>
-        {{ range site.Sections }}
-          <a href="{{ .RelPermalink }}">{{ with .Params.emoji }}{{ . }} {{ end }}{{ .Title }}</a>
+        {{ $certs := where site.Sections "Params.type" "cert" }}
+        {{ range $certs.ByWeight }}
+          <a href="{{ .RelPermalink }}">{{ with .Params.emoji }}{{ . }} {{ end }}{{ .Params.shortname | default .Title }}</a>
         {{ else }}
           <span class="site-footer__soon">证书陆续上线中…</span>
         {{ end }}
       </div>
       <div class="site-footer__col">
+        <h3>职业技能</h3>
+        <a href="{{ "diangong/" | relURL }}">⚡ 电工</a>
+        <a href="{{ "duanshipin/" | relURL }}">🎬 短视频剪辑</a>
+        <a href="{{ "uisheji/" | relURL }}">🎨 UI 设计</a>
+        <a href="{{ "qiuzhi/" | relURL }}">🧳 求职与职场</a>
+        <a href="{{ "zhichang/" | relURL }}">🧭 职场考证指南</a>
+      </div>
+      <div class="site-footer__col">
         <h3>站点</h3>
         <a href="{{ site.Home.RelPermalink }}">首页</a>
-        <a href="{{ "qiuzhi/" | relURL }}">求职与职场指南</a>
-        <a href="{{ "zhichang/" | relURL }}">职场考证指南</a>
         <a href="{{ "about/" | relURL }}">关于本站</a>
         <a href="{{ "license/" | relURL }}">版权与使用条款</a>
         <a href="{{ "about/" | relURL }}#纠错与投稿">纠错与投稿</a>
