@@ -5,7 +5,7 @@ cert: "uisheji"
 book: "jiaohu"
 weight: 1
 quizChapter: "UI 设计·交互原则"
-description: "反馈（操作有响应）+ 一致性（风格统一）+ 可逆（操作可撤销）——"3 种"交互原则，"必懂"。"
+description: "反馈（操作有响应）+ 一致性（风格统一）+ 可逆（操作可撤销）——“3 种”交互原则，“必懂”。"
 ---
 
 ## 考点梳理

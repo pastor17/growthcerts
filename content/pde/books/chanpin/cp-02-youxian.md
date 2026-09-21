@@ -5,7 +5,7 @@ cert: "pde"
 book: "chanpin"
 weight: 2
 quizChapter: "PDE·优先级指标"
-description: "RICE/ICE/Kano 三种优先级方法的适用与计算 + 北极星/输入/护栏 3 层指标设计 + 需求砍法——"会砍需求"才是 PDE。"
+description: "RICE/ICE/Kano 三种优先级方法的适用与计算 + 北极星/输入/护栏 3 层指标设计 + 需求砍法——“会砍需求”才是 PDE。"
 ---
 
 ## 考点梳理

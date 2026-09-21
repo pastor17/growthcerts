@@ -5,7 +5,7 @@ cert: "duanshipin"
 book: "chushu"
 weight: 1
 quizChapter: "短视频·输出规范"
-description: "格式（MP4/MOV/MKV）+ 码率（5~20Mbps）+ 帧率（25/30/60fps）+ 分辨率（1080p/4K）+ 平台规范（抖音/快手/B 站/视频号）——"数字卡"必背。"
+description: "格式（MP4/MOV/MKV）+ 码率（5~20Mbps）+ 帧率（25/30/60fps）+ 分辨率（1080p/4K）+ 平台规范（抖音/快手/B 站/视频号）——“数字卡”必背。"
 ---
 
 ## 考点梳理

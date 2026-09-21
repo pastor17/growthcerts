@@ -2,7 +2,7 @@
 title: "题库与情境练习"
 type: practice
 cert: "aideploy"
-description: "AI 落地情境练习：部署选型/显存计算/推理优化/RAG/Agent/评估运维 6 类高频情境题，每题带"情境 + 选项 + 答案 + 错因分析"，训练"把模型跑进生产"的工程判断。"
+description: "AI 落地情境练习：部署选型/显存计算/推理优化/RAG/Agent/评估运维 6 类高频情境题，每题带“情境 + 选项 + 答案 + 错因分析”，训练“把模型跑进生产”的工程判断。"
 emoji: "🎯"
 weight: 50
 ---

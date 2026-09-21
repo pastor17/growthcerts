@@ -5,7 +5,7 @@ cert: "aideploy"
 book: "youhua"
 weight: 1
 quizChapter: "AI落地·推理优化"
-description: "Prefill/Decode 两阶段 + KV Cache 原理与 PagedAttention + Continuous Batching + TTFT/TPOT/E2E 三指标 + 优化决策树——"瓶颈在哪，优化就在哪"。"
+description: "Prefill/Decode 两阶段 + KV Cache 原理与 PagedAttention + Continuous Batching + TTFT/TPOT/E2E 三指标 + 优化决策树——“瓶颈在哪，优化就在哪”。"
 ---
 
 ## 考点梳理

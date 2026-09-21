@@ -85,7 +85,7 @@
 {{- range $parts -}}
   {{- $acc = printf "%s/%s" $acc . -}}
   {{- $p := site.GetPage (strings.TrimPrefix "/" $acc) -}}
-  {{- if and $p (not (eq $p.RelPermalink .Permalink)) -}}{{- $crumbs = $crumbs | append (dict "name" $p.Title "url" $p.Permalink) -}}{{- end -}}
+  {{- if and $p (not (eq $p.RelPermalink $.Permalink)) -}}{{- $crumbs = $crumbs | append (dict "name" $p.Title "url" $p.Permalink) -}}{{- end -}}
 {{- end -}}
 {{- $crumbs = $crumbs | append (dict "name" .Title "url" .Permalink) -}}
 {{- $list := slice -}}

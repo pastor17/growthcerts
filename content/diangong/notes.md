@@ -4,7 +4,7 @@ type: guide
 cert: "diangong"
 navTab: true
 navLabel: "备考笔记"
-description: "电工"双证"该记什么（电气安全 4 种危害、安全操作 3 种、电路基础 3 种、实操流程）、10 条避坑清单、官方入口与社区检索关键词。"
+description: "电工“双证”该记什么（电气安全 4 种危害、安全操作 3 种、电路基础 3 种、实操流程）、10 条避坑清单、官方入口与社区检索关键词。"
 emoji: "📝"
 weight: 45
 ---

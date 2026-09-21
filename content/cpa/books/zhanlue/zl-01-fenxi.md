@@ -5,7 +5,7 @@ cert: "cpa"
 book: "zhanlue"
 weight: 1
 quizChapter: "CPA·战略分析"
-description: "宏观（PEST）、行业（五力）、内部（价值链）、综合（SWOT）四大分析框架——战略科"地基"，案例题必用。"
+description: "宏观（PEST）、行业（五力）、内部（价值链）、综合（SWOT）四大分析框架——战略科“地基”，案例题必用。"
 ---
 
 ## 考点梳理

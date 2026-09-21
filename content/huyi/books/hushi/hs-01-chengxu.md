@@ -5,7 +5,7 @@ cert: "huyi"
 book: "hushi"
 weight: 1
 quizChapter: "护士·护理程序"
-description: "护理程序 4 步（评估 → 诊断 → 计划 → 评价）、PES 公式、SMART 原则、护理诊断分类——护士"全书之王"。"
+description: "护理程序 4 步（评估 → 诊断 → 计划 → 评价）、PES 公式、SMART 原则、护理诊断分类——护士“全书之王”。"
 ---
 
 ## 考点梳理

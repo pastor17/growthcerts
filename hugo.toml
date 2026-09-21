@@ -14,6 +14,10 @@ enableRobotsTXT = true
 disableKinds = ['taxonomy', 'term']
 disableHugoGeneratorInject = true
 
+# 首页额外输出 JSON（站内搜索索引，全量页面只生成一次）
+[outputs]
+  home = ['HTML', 'JSON']
+
 # SEO：sitemap 按页面类型设置优先级与更新频率
 [sitemap]
   changefreq = 'weekly'

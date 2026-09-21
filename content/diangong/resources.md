@@ -2,7 +2,7 @@
 title: "学习资源"
 type: guide
 cert: "diangong"
-description: "电工"双证"官方入口与正版资料：应急管理部、人社部、安全规程与实操视频获取渠道。"
+description: "电工“双证”官方入口与正版资料：应急管理部、人社部、安全规程与实操视频获取渠道。"
 emoji: "🔗"
 weight: 40
 ---

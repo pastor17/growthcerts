@@ -2,7 +2,7 @@
 title: "书籍库"
 type: bookshelf
 cert: "diangong"
-description: "电工"双证"备考书：特种作业（安全生产技术 + 法规）+ 职业资格（电气基础 + 实操），编写中。"
+description: "电工“双证”备考书：特种作业（安全生产技术 + 法规）+ 职业资格（电气基础 + 实操），编写中。"
 emoji: "📚"
 weight: 40
 ---

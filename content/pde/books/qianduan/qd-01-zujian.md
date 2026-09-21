@@ -5,7 +5,7 @@ cert: "pde"
 book: "qianduan"
 weight: 1
 quizChapter: "PDE·组件工程"
-description: "组件拆分 3 问（复用/状态/Props）+ 状态管理（useState/Context/状态库）+ 性能预算（LCP/INP/CLS）+ 无障碍（焦点/对比/语义）——"AI 生成第一版，每个组件你能解释"。"
+description: "组件拆分 3 问（复用/状态/Props）+ 状态管理（useState/Context/状态库）+ 性能预算（LCP/INP/CLS）+ 无障碍（焦点/对比/语义）——“AI 生成第一版，每个组件你能解释”。"
 ---
 
 ## 考点梳理

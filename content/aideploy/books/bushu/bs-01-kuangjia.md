@@ -5,7 +5,7 @@ cert: "aideploy"
 book: "bushu"
 weight: 1
 quizChapter: "AI落地·推理框架"
-description: "Ollama/vLLM/llama.cpp/TGI 四框架对比 + 选型口诀 + 显存账 4 项 + 服务化三件套（OpenAI 兼容/鉴权/限流）——"Demo 用 Ollama，生产用 vLLM，端侧用 llama.cpp"。"
+description: "Ollama/vLLM/llama.cpp/TGI 四框架对比 + 选型口诀 + 显存账 4 项 + 服务化三件套（OpenAI 兼容/鉴权/限流）——“Demo 用 Ollama，生产用 vLLM，端侧用 llama.cpp”。"
 ---
 
 ## 考点梳理

@@ -5,7 +5,7 @@ cert: "pde"
 book: "chanpin"
 weight: 1
 quizChapter: "PDE·问题定义"
-description: "问题定义 4 问（谁/场景/障碍/结果）+ 用户研究 4 步（招募/访谈/归纳/验证）+ 优先级 RICE——PDE 区别于"执行者"的核心。"
+description: "问题定义 4 问（谁/场景/障碍/结果）+ 用户研究 4 步（招募/访谈/归纳/验证）+ 优先级 RICE——PDE 区别于“执行者”的核心。"
 ---
 
 ## 考点梳理

@@ -5,7 +5,7 @@ cert: "aideploy"
 book: "yunwei"
 weight: 1
 quizChapter: "AI落地·评估"
-description: "测试集 3 层（核心/边界/对抗）+ 自动评估（相似度/LLM 评审/RAGAS）+ 人工抽查 + 回归流程——"改提示词/换模型/换切分必跑回归"。"
+description: "测试集 3 层（核心/边界/对抗）+ 自动评估（相似度/LLM 评审/RAGAS）+ 人工抽查 + 回归流程——“改提示词/换模型/换切分必跑回归”。"
 ---
 
 ## 考点梳理

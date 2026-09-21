@@ -5,7 +5,7 @@ cert: "aideploy"
 book: "rag"
 weight: 2
 quizChapter: "AI落地·Agent"
-description: "Agent 三要素（模型/工具/循环）+ ReAct 模式 + 工具调用（Function Calling）+ Agent vs 工作流选型 + 生产约束（步数/超时/人工确认）——"别为了 Agent 而 Agent"。"
+description: "Agent 三要素（模型/工具/循环）+ ReAct 模式 + 工具调用（Function Calling）+ Agent vs 工作流选型 + 生产约束（步数/超时/人工确认）——“别为了 Agent 而 Agent”。"
 ---
 
 ## 考点梳理

@@ -5,7 +5,7 @@ cert: "uisheji"
 book: "qianduan"
 weight: 1
 quizChapter: "UI 设计·CSS 基础"
-description: "CSS 选择器（类/ID/属性）+ 盒模型（content/padding/border/margin）+ 布局（Flex/Grid/浮动）——"理论"必会。"
+description: "CSS 选择器（类/ID/属性）+ 盒模型（content/padding/border/margin）+ 布局（Flex/Grid/浮动）——“理论”必会。"
 ---
 
 ## 考点梳理

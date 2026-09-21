@@ -2,7 +2,7 @@
 title: "报考指南"
 type: guide
 cert: "diangong"
-description: "电工"双证"报名条件、时间线、报名方式、合格标准与复审（官方口径整理）。"
+description: "电工“双证”报名条件、时间线、报名方式、合格标准与复审（官方口径整理）。"
 emoji: "🗓️"
 weight: 20
 ---

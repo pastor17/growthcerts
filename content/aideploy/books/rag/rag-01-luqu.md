@@ -5,7 +5,7 @@ cert: "aideploy"
 book: "rag"
 weight: 1
 quizChapter: "AI落地·RAG 链路"
-description: "RAG 5 步链路（切分→Embedding→检索→重排→生成）+ 切分 3 原则 + 向量/BM25 混合检索 + 重排与 top-k——"切分是 RAG 一半质量"。"
+description: "RAG 5 步链路（切分→Embedding→检索→重排→生成）+ 切分 3 原则 + 向量/BM25 混合检索 + 重排与 top-k——“切分是 RAG 一半质量”。"
 ---
 
 ## 考点梳理

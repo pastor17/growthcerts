@@ -4,7 +4,7 @@ type: guide
 cert: "diangong"
 navTab: true
 navLabel: "一页速记"
-description: "电工"双证"考前速记单页：电气安全 4 种危害、安全操作 3 种、电路基础 3 种、实操流程、机考注意事项。"
+description: "电工“双证”考前速记单页：电气安全 4 种危害、安全操作 3 种、电路基础 3 种、实操流程、机考注意事项。"
 emoji: "⚡"
 weight: 46
 ---

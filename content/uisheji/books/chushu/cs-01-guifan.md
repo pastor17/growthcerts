@@ -5,7 +5,7 @@ cert: "uisheji"
 book: "chushu"
 weight: 1
 quizChapter: "UI 设计·输出规范"
-description: "格式（PNG/JPEG/SVG）+ 图标规范（尺寸/颜色/圆角）+ 命名规范（前缀/层级）+ 切图规范（尺寸/格式/压缩）+ 平台（Web/App/小程序）——设计师交付"最后一厘米"。"
+description: "格式（PNG/JPEG/SVG）+ 图标规范（尺寸/颜色/圆角）+ 命名规范（前缀/层级）+ 切图规范（尺寸/格式/压缩）+ 平台（Web/App/小程序）——设计师交付“最后一厘米”。"
 ---
 
 ## 考点梳理

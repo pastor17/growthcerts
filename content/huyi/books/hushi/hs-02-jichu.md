@@ -5,7 +5,7 @@ cert: "huyi"
 book: "hushi"
 weight: 2
 quizChapter: "护士·基础护理"
-description: "生命体征（T/P/R/BP）、给药（三查七对/给药途径）、无菌技术（手卫生/无菌操作）、急救（CPR/心肺复苏）——"必考"模块。"
+description: "生命体征（T/P/R/BP）、给药（三查七对/给药途径）、无菌技术（手卫生/无菌操作）、急救（CPR/心肺复苏）——“必考”模块。"
 ---
 
 ## 考点梳理

@@ -1,0 +1,9 @@
+{{- /* 站内搜索索引（仅首页 JSON 输出生成一次）：标题/类型/url/面包屑/描述 */ -}}
+{{- $entries := slice -}}
+{{- range site.AllPages -}}
+  {{- $tp := .Type -}}
+  {{- if or (eq $tp "cert") (eq $tp "chapter") (eq $tp "guide") (eq $tp "guidehome") (eq $tp "practice") (eq $tp "book") -}}
+    {{- $entries = $entries | append (partial "search-index.html" .) -}}
+  {{- end -}}
+{{- end -}}
+{{- printf "[\n%s\n]" (delimit $entries ",\n") -}}

@@ -5,7 +5,7 @@ cert: "duanshipin"
 book: "tiaose"
 weight: 1
 quizChapter: "短视频·调色流程"
-description: "校正（白平衡/曝光/对比）+ 风格化（LUT/色彩分级）+ 输出（格式/码率）——"3 步"调色流程，"顺序不能乱"。"
+description: "校正（白平衡/曝光/对比）+ 风格化（LUT/色彩分级）+ 输出（格式/码率）——“3 步”调色流程，“顺序不能乱”。"
 ---
 
 ## 考点梳理

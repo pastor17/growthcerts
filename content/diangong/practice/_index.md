@@ -2,7 +2,7 @@
 title: "题库"
 type: practice
 cert: "diangong"
-description: "电工"双证"章节练习（特种作业 + 职业资格）与考前模拟，整理中。"
+description: "电工“双证”章节练习（特种作业 + 职业资格）与考前模拟，整理中。"
 emoji: "🎯"
 weight: 50
 ---

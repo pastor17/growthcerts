@@ -2,7 +2,7 @@
 title: "证书百科"
 type: guide
 cert: "gongkao"
-description: "公考是什么、国考与省考的区别、三阶段考什么、岗位选择策略、投入评估与"上岸"后发展。"
+description: "公考是什么、国考与省考的区别、三阶段考什么、岗位选择策略、投入评估与“上岸”后发展。"
 emoji: "🏛️"
 weight: 10
 ---

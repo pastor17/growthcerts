@@ -5,7 +5,7 @@ cert: "diangong"
 book: "jigui"
 weight: 1
 quizChapter: "电工·电路基础"
-description: "欧姆定律（U=IR）、基尔霍夫定律（KCL/KVL）、串并联（串分压/并分流）——职业资格"电路基础"必背。"
+description: "欧姆定律（U=IR）、基尔霍夫定律（KCL/KVL）、串并联（串分压/并分流）——职业资格“电路基础”必背。"
 ---
 
 ## 考点梳理
