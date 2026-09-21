@@ -699,3 +699,51 @@ a.chip:hover { border-color: var(--primary); color: var(--primary-dark); text-de
 .related-list__item { display: block; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm); color: var(--ink); text-decoration: none; font-size: 14px; line-height: 1.5; transition: border-color 0.15s, box-shadow 0.15s; }
 .related-list__item:hover { border-color: var(--primary); box-shadow: var(--shadow-sm); text-decoration: none; color: var(--ink); }
 .related-list__item small { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }
+
+/* ============ 站内搜索 ============ */
+.site-search { position: relative; margin-left: 8px; }
+.site-search__label { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.7; pointer-events: none; }
+.site-search__input {
+  width: 190px; padding: 7px 12px 7px 30px;
+  background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px; color: #fff; font-size: 13px; outline: none;
+  transition: width 0.2s ease, background 0.15s, border-color 0.15s;
+}
+.site-search__input::placeholder { color: rgba(255, 255, 255, 0.55); }
+.site-search__input:focus { width: 250px; background: rgba(255, 255, 255, 0.14); border-color: var(--primary); }
+.site-search__results {
+  position: absolute; top: calc(100% + 10px); right: 0; width: 360px; max-height: 420px; overflow: auto;
+  margin: 0; padding: 8px; list-style: none;
+  background: #fff; border: 1px solid var(--line); border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(8, 12, 24, 0.22); z-index: 60;
+}
+.site-search__results li { margin: 0; }
+.site-search__results li a {
+  display: block; padding: 10px 12px; border-radius: 8px; text-decoration: none; color: var(--ink);
+}
+.site-search__results li a:hover, .site-search__results li.is-active a { background: var(--primary-ghost); }
+.site-search__row1 { display: flex; align-items: center; gap: 8px; }
+.site-search__badge {
+  flex: none; font-size: 11px; line-height: 1; padding: 3px 7px; border-radius: 999px;
+  background: #eef2fb; color: #2b5bd7; font-weight: 600;
+}
+.site-search__badge--chapter { background: #e8f6ef; color: #157347; }
+.site-search__badge--guide { background: #fff4e0; color: #9a6208; }
+.site-search__badge--practice { background: #f3e8ff; color: #6d28d9; }
+.site-search__badge--book { background: #e6f0fb; color: #1d4ed8; }
+.site-search__badge--cert { background: #fde8e8; color: #b91c1c; }
+.site-search__title { font-size: 14px; font-weight: 600; }
+.site-search__desc { display: block; margin-top: 3px; font-size: 12px; color: var(--muted); line-height: 1.45; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.site-search__crumb { display: block; margin-top: 3px; font-size: 11px; color: var(--muted); opacity: 0.8; }
+.site-search__msg { padding: 14px 12px; font-size: 13px; color: var(--muted); }
+.site-search__results mark, .site-search__dropin mark { background: #ffe58f; color: inherit; border-radius: 2px; padding: 0 1px; }
+.site-search__drop { position: absolute; top: calc(100% + 10px); right: 0; z-index: 60; }
+.site-search__dropin { background: #fff; border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow-sm); padding: 8px 12px; font-size: 13px; }
+.site-search__dropin a { color: var(--primary); text-decoration: none; font-weight: 600; }
+
+@media (max-width: 900px) {
+  .site-search { width: 100%; order: 5; margin: 6px 0 2px; }
+  .site-search__input { width: 100%; }
+  .site-search__input:focus { width: 100%; }
+  .site-search__results { width: calc(100vw - 40px); max-width: 360px; }
+}

@@ -11,6 +11,12 @@
       <span></span><span></span><span></span>
     </button>
     <nav class="site-nav" id="siteNav" aria-label="主导航">
+      <div class="site-search" id="siteSearch">
+        <label class="site-search__label" for="siteSearchInput" aria-hidden="true">🔍</label>
+        <input class="site-search__input" id="siteSearchInput" type="search" placeholder="搜索证书 / 章节 / 考点…" autocomplete="off" aria-label="站内搜索" role="combobox" aria-expanded="false" aria-controls="siteSearchResults" aria-autocomplete="list">
+        <ul class="site-search__results" id="siteSearchResults" role="listbox" hidden></ul>
+        <div class="site-search__drop" id="siteSearchDrop" hidden></div>
+      </div>
       <a href="{{ site.Home.RelPermalink }}">首页</a>
       <a href="{{ site.Home.RelPermalink }}#certs">全部证书</a>
       <a href="{{ "qiuzhi/" | relURL }}">求职指南</a>

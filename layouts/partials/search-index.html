@@ -1,0 +1,17 @@
+{{- /* 站内搜索索引：每页输出一条 JSON（id/标题/类型/url/面包屑/描述） */ -}}
+{{- $tp := .Type -}}
+{{- $crumb := "" -}}
+{{- with .File -}}
+  {{- $parts := split (strings.TrimSuffix "/" .Dir) "/" -}}
+  {{- $names := slice -}}
+  {{- $acc := "" -}}
+  {{- range $parts -}}
+    {{- $acc = printf "%s/%s" $acc . -}}
+    {{- $p := site.GetPage (strings.TrimPrefix "/" $acc) -}}
+    {{- if $p -}}{{- $names = $names | append ($p.Params.shortname | default $p.Title) -}}{{- end -}}
+  {{- end -}}
+  {{- $crumb = strings.Join $names " / " -}}
+{{- end -}}
+{{- $desc := "" -}}
+{{- if .Description -}}{{- $desc = .Description -}}{{- else if .Summary -}}{{- $desc = .Summary | plainify | truncate 100 -}}{{- end -}}
+{id: "{{ strings.ReplaceAll .Permalink "#" "" }}", t: {{ .Title | jsonify }}, tp: {{ $tp | jsonify }}, u: {{ .RelPermalink | jsonify }}, c: {{ $crumb | jsonify }}, d: {{ $desc | jsonify }}}

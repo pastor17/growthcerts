@@ -2,3 +2,13 @@
 {{- if not hugo.IsServer }}{{ $js = $js | minify | fingerprint }}{{ end -}}
 <script>window.__mermaidSrc = "{{ "js/mermaid.min.js" | relURL }}";</script>
 <script src="{{ $js.RelPermalink }}" defer></script>
+
+{{- /* 站内搜索索引：证书 + 全部普通页（章节/指南/书籍/题库），客户端 fetch 过滤 */ -}}
+{{- $pages := site.AllPages | where "Type" "in" (slice "cert" "chapter" "guide" "guidehome" "practice" "book") -}}
+{{- $entries := slice -}}
+{{- range $pages -}}
+  {{- $entries = $entries | append (partial "search-index.html" .) -}}
+{{- end -}}
+{{- $idx := resources.FromString (printf "[\n%s\n]" (delimit $entries ",\n")) | minify -}}
+<link rel="preload" href="{{ $idx.RelPermalink }}" as="fetch" crossorigin="anonymous">
+<script>window.__searchIndex = "{{ $idx.RelPermalink }}";</script>

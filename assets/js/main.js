@@ -12,6 +12,212 @@
     });
   }
 
+  /* ================= 站内搜索（fetch 全量页面 + 客户端过滤） ================= */
+  (function () {
+    var input = document.getElementById("siteSearchInput");
+    var results = document.getElementById("siteSearchResults");
+    var drop = document.getElementById("siteSearchDrop");
+    if (!input || !results) return;
+
+    var INDEX_URL = window.__searchIndex || "";
+    var entries = [];
+    var loading = null;
+    var activeIdx = -1;
+
+    function load() {
+      if (loading) return loading;
+      if (!INDEX_URL) {
+        loading = Promise.resolve();
+        return loading;
+      }
+      loading = fetch(INDEX_URL).then(function (r) {
+        if (!r.ok) throw new Error("http " + r.status);
+        return r.json();
+      }).then(function (data) {
+        entries = Array.isArray(data) ? data : [];
+      }).catch(function (e) {
+        console.error("search index load failed:", e);
+      });
+      return loading;
+    }
+
+    /* 按字符切词（中文无空格）：整串 + 2-gram + 单字 */
+    function grams(s) {
+      s = String(s || "").toLowerCase().trim();
+      if (!s) return [];
+      var set = [s];
+      if (s.length > 2) {
+        for (var i = 0; i + 2 <= s.length; i++) set.push(s.slice(i, i + 2));
+      }
+      for (var j = 0; j < s.length; j++) set.push(s.charAt(j));
+      return set;
+    }
+
+    function score(e, q) {
+      var qn = q.toLowerCase();
+      var title = e.t.toLowerCase();
+      var desc = (e.d || "").toLowerCase();
+      var crumb = (e.c || "").toLowerCase();
+      var s = 0;
+      if (title === qn) s += 100;
+      else if (title.indexOf(qn) !== -1) s += 60 + (6 - Math.min(6, title.indexOf(qn)));
+      var gs = grams(q);
+      var hitTitle = false, hitDesc = false, hitCrumb = false;
+      for (var i = 0; i < gs.length; i++) {
+        var g = gs[i];
+        if (!g) continue;
+        if (title.indexOf(g) !== -1) hitTitle = true;
+        else if (desc.indexOf(g) !== -1) hitDesc = true;
+        else if (crumb.indexOf(g) !== -1) hitCrumb = true;
+      }
+      if (hitTitle) s += 25;
+      if (hitDesc) s += 10;
+      if (hitCrumb) s += 5;
+      if (e.tp === "cert") s += 4;
+      if (e.tp === "book") s += 2;
+      return s;
+    }
+
+    function esc(s) {
+      return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+      });
+    }
+
+    function hi(text, q) {
+      var t = esc(text);
+      if (!q) return t;
+      var ql = q.toLowerCase();
+      var idx = String(text).toLowerCase().indexOf(ql);
+      if (idx < 0) return t;
+      return esc(text.slice(0, idx)) + "<mark>" + esc(text.slice(idx, idx + q.length)) + "</mark>" + esc(text.slice(idx + q.length));
+    }
+
+    function typeBadge(tp) {
+      var map = { cert: "证书", book: "书", chapter: "章节", guide: "指南", practice: "题库" };
+      return map[tp] || tp;
+    }
+
+    function search(q) {
+      var res = [];
+      for (var i = 0; i < entries.length; i++) {
+        var s = score(entries[i], q);
+        if (s > 0) res.push({ e: entries[i], s: s });
+      }
+      res.sort(function (a, b) { return b.s - a.s; });
+      return res.slice(0, 12);
+    }
+
+    function render(q) {
+      activeIdx = -1;
+      if (!q) {
+        results.hidden = true; drop.hidden = true;
+        input.setAttribute("aria-expanded", "false");
+        return;
+      }
+      load().then(function () {
+        var res = search(q);
+        if (!entries.length) {
+          results.innerHTML = '<li class="site-search__msg">索引加载中，请重试…</li>';
+        } else if (!res.length) {
+          results.innerHTML = '<li class="site-search__msg">没有找到与「' + esc(q) + '」相关的内容</li>';
+        } else {
+          var html = "";
+          res.forEach(function (r, i) {
+            var e = r.e;
+            html +=
+              '<li role="option" id="sr' + i + '">' +
+                '<a href="' + esc(e.u) + '">' +
+                  '<span class="site-search__row1"><span class="site-search__badge site-search__badge--' + esc(e.tp) + '">' + typeBadge(e.tp) + "</span>" +
+                  '<strong class="site-search__title">' + hi(e.t, q) + "</strong></span>" +
+                  (e.d ? '<span class="site-search__desc">' + hi(e.d, q) + "</span>" : "") +
+                  (e.c ? '<span class="site-search__crumb">' + esc(e.c) + "</span>" : "") +
+                "</a>" +
+              "</li>";
+          });
+          results.innerHTML = html;
+        }
+        results.hidden = false;
+        drop.hidden = true;
+        input.setAttribute("aria-expanded", "true");
+        input.setAttribute("aria-activedescendant", "");
+      });
+    }
+
+    function close() {
+      results.hidden = true;
+      drop.hidden = true;
+      input.setAttribute("aria-expanded", "false");
+      activeIdx = -1;
+    }
+
+    function openDrop(url, label) {
+      if (!url) return;
+      drop.innerHTML = '<div class="site-search__dropin"><a href="' + esc(url) + '">' + esc(label) + " <span>↗</span></a></div>";
+      drop.hidden = false;
+    }
+
+    var debounce;
+    input.addEventListener("input", function () {
+      var q = input.value.trim();
+      clearTimeout(debounce);
+      if (!q) { close(); return; }
+      debounce = setTimeout(function () { render(q); }, 120);
+    });
+
+    input.addEventListener("keydown", function (e) {
+      var items = results.querySelectorAll("li[role=option] a");
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        if (!items.length) return;
+        e.preventDefault();
+        activeIdx = e.key === "ArrowDown"
+          ? (activeIdx + 1) % items.length
+          : (activeIdx - 1 + items.length) % items.length;
+        items.forEach(function (a, i) {
+          a.parentElement.classList.toggle("is-active", i === activeIdx);
+          if (i === activeIdx) input.setAttribute("aria-activedescendant", a.parentElement.id);
+        });
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        if (activeIdx >= 0 && items[activeIdx]) { window.location.href = items[activeIdx].href; return; }
+        var first = results.querySelector("li[role=option] a");
+        if (first) window.location.href = first.href;
+      } else if (e.key === "Escape") {
+        if (!results.hidden) { close(); input.blur(); }
+      }
+    });
+
+    input.addEventListener("focus", function () {
+      if (input.value.trim() && results.children.length) {
+        results.hidden = false;
+        input.setAttribute("aria-expanded", "true");
+      }
+    });
+
+    /* 失焦延迟关闭（让点击先发生） */
+    input.addEventListener("blur", function () {
+      setTimeout(function () {
+        if (results.hidden || !results.contains(document.activeElement)) close();
+      }, 150);
+    });
+
+    /* Ctrl/Cmd + K 聚焦搜索 */
+    document.addEventListener("keydown", function (e) {
+      if ((e.ctrlKey || e.metaKey) && (e.key === "k" || e.key === "K")) {
+        e.preventDefault();
+        input.focus();
+        input.select();
+      }
+    });
+
+    /* 预热：页面 idle 时加载索引 */
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(function () { load(); }, { timeout: 3000 });
+    } else {
+      setTimeout(load, 1500);
+    }
+  })();
+
   /* ================= 图表（Mermaid）按需加载 ================= */
   (function () {
     var codes = document.querySelectorAll("code.language-mermaid");
