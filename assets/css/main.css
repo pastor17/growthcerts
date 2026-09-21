@@ -96,7 +96,7 @@ h1, h2, h3, h4 { line-height: 1.35; color: var(--ink); margin: 0 0 0.5em; font-w
 .brand__text strong { font-size: 1.12rem; letter-spacing: 0.05em; color: #fff; }
 .brand__text small { font-size: 0.68rem; color: #8ea2c9; letter-spacing: 0.03em; }
 
-.site-nav { display: flex; gap: 2px; margin-left: auto; }
+.site-nav { display: flex; align-items: center; gap: 2px; margin-left: auto; }
 .site-nav a {
   color: #c4cfE4; text-decoration: none; font-weight: 600; font-size: 0.93rem;
   padding: 8px 14px; border-radius: 7px; transition: background 0.15s, color 0.15s;
@@ -543,13 +543,17 @@ a.chip:hover { border-color: var(--primary); color: var(--primary-dark); text-de
 .site-footer { background: var(--nav-bg); color: #aeb9d4; margin-top: 48px; padding: 46px 0 26px; border-top: 2px solid var(--primary); }
 .site-footer a { color: #9db6f2; }
 .site-footer a:hover { color: #fff; }
-.site-footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px; margin-bottom: 26px; }
+.site-footer__grid { display: grid; grid-template-columns: 1.5fr 1.8fr 0.8fr 0.7fr; gap: 32px; margin-bottom: 26px; }
 .site-footer h2 { color: #fff; font-size: 1.15rem; }
 .site-footer h3 { color: #c6d2ec; font-size: 0.82rem; letter-spacing: 0.12em; margin-bottom: 14px; }
 .site-footer__about p { color: #93a0bf; font-size: 0.9rem; max-width: 40rem; }
 .site-footer__col { display: flex; flex-direction: column; gap: 8px; }
 .site-footer__col a { font-size: 0.9rem; }
 .site-footer__soon { font-size: 0.9rem; color: #6d7a99; }
+.site-footer__group { display: flex; align-items: baseline; gap: 10px; line-height: 1.5; }
+.site-footer__group-label { flex: none; color: #6d7a99; font-size: 0.78rem; letter-spacing: 0.04em; }
+.site-footer__group-links { display: flex; flex-wrap: wrap; gap: 2px 12px; }
+.site-footer__group-links a { font-size: 0.85rem; line-height: 1.5; }
 .site-footer__copyright { color: #6d7a99; font-size: 0.8rem; border-top: 1px solid rgba(255, 255, 255, 0.09); padding-top: 18px; margin: 0; }
 
 /* ---------- 其他 ---------- */
@@ -701,12 +705,13 @@ a.chip:hover { border-color: var(--primary); color: var(--primary-dark); text-de
 .related-list__item small { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }
 
 /* ============ 站内搜索 ============ */
-.site-search { position: relative; margin-left: 8px; }
-.site-search__label { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.7; pointer-events: none; }
+.site-search { position: relative; display: flex; align-items: center; margin-left: 8px; }
+.site-search__label { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); font-size: 13px; line-height: 1; opacity: 0.75; pointer-events: none; }
 .site-search__input {
-  width: 190px; padding: 7px 12px 7px 30px;
+  width: 190px; height: 34px; padding: 0 12px 0 32px;
   background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 999px; color: #fff; font-size: 13px; outline: none;
+  border-radius: 999px; color: #fff; font-size: 13px; line-height: 34px; outline: none;
+  -webkit-appearance: none; appearance: none;
   transition: width 0.2s ease, background 0.15s, border-color 0.15s;
 }
 .site-search__input::placeholder { color: rgba(255, 255, 255, 0.55); }
