@@ -2,7 +2,7 @@
 title: "证书百科"
 type: guide
 cert: "ruanjian-kaoshi"
-description: "软考系统集成项目管理工程师是什么、含金量、适合谁考。"
+description: "系统集成项目管理工程师（软考中级）百科：机考两科连考（综合知识选择题 + 案例分析）、合格线 45/75、考试时间、报名门槛、含金量与适合人群——信息技术中级热门科目。"
 emoji: "🏛️"
 weight: 10
 ---

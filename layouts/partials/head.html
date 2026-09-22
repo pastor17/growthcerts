@@ -9,6 +9,7 @@
 {{- else if .Summary -}}
   {{- $desc = .Summary | plainify | truncate 160 -}}
 {{- end -}}
+{{- if not $desc -}}{{- $desc = site.Params.description -}}{{- end -}}
 <meta name="description" content="{{ $desc }}">
 <meta name="author" content="{{ site.Params.author }}">
 <link rel="canonical" href="{{ .Permalink }}">

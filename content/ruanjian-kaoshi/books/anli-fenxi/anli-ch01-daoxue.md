@@ -5,7 +5,7 @@ cert: "ruanjian-kaoshi"
 book: "anli-fenxi"
 weight: 1
 quizChapter: "案例·答题模板"
-description: "案例分析题型构成、时间分配、四类题型的标准答题结构与话术。"
+description: "软考案例题总纲：案例分析题型构成（找错/计算/论述）、120 分钟时间分配策略、四类题型（挣值/网络图/风险/干系人）的标准答题结构与得分话术。"
 ---
 
 ## 答题框架（先记住骨架）

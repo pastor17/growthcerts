@@ -2,7 +2,7 @@
 title: "证书百科"
 type: guide
 cert: "chuji-kuaiji"
-description: "初级会计职称是什么、考什么、证书价值与适合人群。"
+description: "初级会计职称（助理会计师）百科：考《初级会计实务》《经济法基础》两科、报名条件、考试时间、合格标准、证书价值与适合人群——财会入门第一证。"
 emoji: "🏛️"
 weight: 10
 ---

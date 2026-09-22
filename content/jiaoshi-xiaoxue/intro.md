@@ -2,7 +2,7 @@
 title: "证书百科"
 type: guide
 cert: "jiaoshi-xiaoxue"
-description: "教师资格证是什么、小学笔试考什么、证书价值与适合人群。"
+description: "小学教师资格证百科：笔试考《综合素质》《教育教学知识与能力》两科 + 面试认定、成绩有效期 2 年、报名条件、考试时间、证书价值与适合人群——国民级教师准入证。"
 emoji: "🏛️"
 weight: 10
 ---

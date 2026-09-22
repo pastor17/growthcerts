@@ -2,7 +2,7 @@
 title: "考试大纲与教材"
 type: guide
 cert: "ruanjian-kaoshi"
-description: "软考系统集成项目管理工程师官方大纲、教程与本站配套书籍。"
+description: "系统集成项目管理工程师官方考试大纲：8 大知识领域（信息化/项目管理基础/范围/进度/成本/质量/风险/沟通等）+ 教程版本与本站配套 16 章精讲书籍对照。"
 emoji: "📋"
 weight: 30
 ---
