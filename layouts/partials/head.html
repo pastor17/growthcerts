@@ -12,7 +12,7 @@
 <meta name="description" content="{{ $desc }}">
 <meta name="author" content="{{ site.Params.author }}">
 <link rel="canonical" href="{{ .Permalink }}">
-<meta name="robots" content="index,follow,max-image-preview:large,noai,noimageai">
+<meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="copyright" content="{{ site.Params.copyright }}">
 <meta name="license" content="CC BY-NC-SA 4.0">
 <link rel="license" href="{{ "license/" | absURL }}">
@@ -29,52 +29,39 @@
 {{- $css := resources.Get "css/main.css" -}}
 {{- if not hugo.IsServer }}{{ $css = $css | minify | fingerprint }}{{ end -}}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-{{- /* 结构化数据（JSON-LD）：利于搜索引擎理解页面类型与层级 */ -}}
+{{- /* 结构化数据（JSON-LD）：dict | jsonify | safeJS（safeJS 避免 <script> 上下文对 JSON 的额外编码，利于 AI 搜索理解站点结构） */ -}}
+{{- $org := dict "@type" "Organization" "name" site.Params.author -}}
+{{- $pub := dict "@type" "Organization" "name" site.Title "url" site.BaseURL -}}
+{{- if .IsHome -}}
+{{- /* 首页：WebSite + SearchAction（让 AI 知道站点定位与站内搜索入口） */ -}}
+{{- $ld := dict "@context" "https://schema.org" "@type" "WebSite" "name" site.Title "alternateName" site.Params.subtitle "description" site.Params.description "inLanguage" "zh-CN" "url" site.BaseURL "publisher" $org "potentialAction" (dict "@type" "SearchAction" "target" (dict "@type" "EntryPoint" "urlTemplate" (printf "%s?q={search_term_string}" site.Home.Permalink)) "query-input" "required name=search_term_string") -}}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{- else -}}
 {{- if eq .Type "chapter" -}}
+{{- /* chapter：Article + isPartOf（关联所属证书）+ articleSection + about */ -}}
 {{- $slug := "" -}}
 {{- with .File }}{{ $slug = index (split .Dir "/") 0 }}{{ end -}}
 {{- $cert := site.GetPage (printf "%s/_index.md" $slug) -}}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": {{ .Title | jsonify }},
-  "description": {{ $desc | jsonify }},
-  "inLanguage": "zh-CN",
-  "author": { "@type": "Organization", "name": {{ site.Params.author | jsonify }} },
-  "publisher": { "@type": "Organization", "name": {{ site.Title | jsonify }}, "url": {{ site.BaseURL | jsonify }} },
-  "datePublished": {{ .Date.Format "2006-01-02" | jsonify }},
-  "dateModified": {{ .Lastmod.Format "2006-01-02" | jsonify }},
-  "mainEntityOfPage": {{ .Permalink | jsonify }}
-}
-</script>
+{{- $shortname := $cert.Params.shortname | default $cert.Title -}}
+{{- $about := slice $shortname -}}
+{{- with $cert.Params.field }}{{ $about = $about | append . }}{{ end -}}
+{{- $ld := dict "@context" "https://schema.org" "@type" "Article" "headline" .Title "description" $desc "inLanguage" "zh-CN" "author" $org "publisher" $pub "datePublished" (.Date.Format "2006-01-02") "dateModified" (.Lastmod.Format "2006-01-02") "mainEntityOfPage" .Permalink "articleSection" $shortname "isPartOf" (dict "@type" "Course" "name" $cert.Title "url" $cert.Permalink) "about" $about -}}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
 {{- else if eq .Type "cert" -}}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Course",
-  "name": {{ .Title | jsonify }},
-  "description": {{ $desc | jsonify }},
-  "inLanguage": "zh-CN",
-  "provider": { "@type": "Organization", "name": {{ site.Params.author | jsonify }}, "url": {{ site.BaseURL | jsonify }} },
-  "url": {{ .Permalink | jsonify }}
-}
-</script>
+{{- /* cert：Course + hasPart（章节结构，让 AI 知道考哪些模块） */ -}}
+{{- $certslug := .File.ContentBaseName -}}
+{{- $chapters := slice -}}
+{{- range (where site.RegularPages "Params.cert" $certslug).ByWeight -}}
+  {{- $chapters = $chapters | append (dict "@type" "CourseSection" "name" .Title "url" .Permalink) -}}
+{{- end -}}
+{{- $ld := dict "@context" "https://schema.org" "@type" "Course" "name" .Title "alternateName" .Params.shortname "description" $desc "inLanguage" "zh-CN" "url" .Permalink "provider" (dict "@type" "Organization" "name" site.Params.author "url" site.BaseURL) -}}
+{{- if $chapters }}{{ $ld = merge $ld (dict "hasPart" $chapters) }}{{ end -}}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
 {{- else if .IsPage -}}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": {{ .Title | jsonify }},
-  "description": {{ $desc | jsonify }},
-  "inLanguage": "zh-CN",
-  "author": { "@type": "Organization", "name": {{ site.Params.author | jsonify }} },
-  "publisher": { "@type": "Organization", "name": {{ site.Title | jsonify }}, "url": {{ site.BaseURL | jsonify }} },
-  "datePublished": {{ .Date.Format "2006-01-02" | jsonify }},
-  "dateModified": {{ .Lastmod.Format "2006-01-02" | jsonify }},
-  "mainEntityOfPage": {{ .Permalink | jsonify }}
-}
-</script>
+{{- /* 其他内容页：Article */ -}}
+{{- $ld := dict "@context" "https://schema.org" "@type" "Article" "headline" .Title "description" $desc "inLanguage" "zh-CN" "author" $org "publisher" $pub "datePublished" (.Date.Format "2006-01-02") "dateModified" (.Lastmod.Format "2006-01-02") "mainEntityOfPage" .Permalink -}}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{- end -}}
 {{- end -}}
 {{- /* 面包屑结构化数据：强化站点层级理解 */ -}}
 {{- if not .IsHome -}}
