@@ -9,10 +9,19 @@
       <nav class="cert-nav" aria-label="证书内导航">
         {{- $items := slice -}}
         {{- $items = $items | append (dict "page" $root "label" ($root.Params.navRootLabel | default "证书首页") "emoji" .Params.emoji) -}}
-        {{- $guides := dict "intro" "证书百科" "exam-guide" "报考指南" "syllabus" "大纲与教材" "resources" "学习资源" -}}
-        {{- range $name, $label := $guides -}}
-          {{- with site.GetPage (printf "%s/%s.md" $seg $name) -}}
-            {{- $items = $items | append (dict "page" . "label" (.Params.navLabel | default $label) "emoji" .Params.emoji) -}}
+        {{- /* 有序引导页：证书百科 → 职场需求 → 报考指南 → 大纲与教材 → 学习资源 */ -}}
+        {{- $guides := slice
+          (dict "name" "intro" "label" "证书百科")
+          (dict "name" "demand" "label" "职场需求")
+          (dict "name" "exam-guide" "label" "报考指南")
+          (dict "name" "syllabus" "label" "大纲与教材")
+          (dict "name" "resources" "label" "学习资源")
+        -}}
+        {{- range $guides -}}
+          {{- $gname := .name -}}
+          {{- $glabel := .label -}}
+          {{- with site.GetPage (printf "%s/%s.md" $seg $gname) -}}
+            {{- $items = $items | append (dict "page" . "label" (.Params.navLabel | default $glabel) "emoji" .Params.emoji) -}}
           {{- end -}}
         {{- end -}}
         {{- range (where $root.RegularPages "Params.navTab" true).ByWeight -}}
