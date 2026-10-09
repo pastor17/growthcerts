@@ -44,10 +44,10 @@ weight: 35
 |---------|------------|---------|---------|
 | 出纳 / 往来 / 费用会计 | **初级会计职称** | 全盘账务基础、Excel、发票与报销合规 | 细心、准确性、对账与凭证规范 |
 | 总账 / 财务主管 | **[中级会计职称](/zhongji-kuaiji/)**（[职场需求](/zhongji-kuaiji/demand/)）、**中级经济师（财税方向）** | 报表编制与分析、预算、税务处理 | 报表与税务实操、跨部门沟通 |
-| 税务 / 事务所 | 税务师（本站待补）、**[CPA 注册会计师](/cpa/)**（[职场需求](/cpa/demand/)） | 税收政策、纳税申报、审计程序 | 政策敏感度、底稿与沟通 |
+| 税务 / 事务所 | **[税务师](/shuiwushi/)**（[职场需求](/shuiwushi/demand/)）、**[CPA 注册会计师](/cpa/)**（[职场需求](/cpa/demand/)） | 税收政策、纳税申报、审计程序 | 政策敏感度、底稿与沟通 |
 | 财务 BP / 管理会计 | **中级经济师**、CMA 等 | 业务分析、成本与预算、数据能力 | 业务理解与数据结论能力 |
 
-> 相关：[初级会计职称](/chuji-kuaiji/)（[职场需求](/chuji-kuaiji/demand/)）｜ [中级会计职称](/zhongji-kuaiji/)（[职场需求](/zhongji-kuaiji/demand/)）｜ [中级经济师](/jingjishi/)（[职场需求](/jingjishi/demand/)）｜ [CPA 注册会计师](/cpa/)（[职场需求](/cpa/demand/)）
+> 相关：[初级会计职称](/chuji-kuaiji/)（[职场需求](/chuji-kuaiji/demand/)）｜ [中级会计职称](/zhongji-kuaiji/)（[职场需求](/zhongji-kuaiji/demand/)）｜ [税务师](/shuiwushi/)（[职场需求](/shuiwushi/demand/)）｜ [中级经济师](/jingjishi/)（[职场需求](/jingjishi/demand/)）｜ [CPA 注册会计师](/cpa/)（[职场需求](/cpa/demand/)）
 
 ## 四、教育 / 培训
 

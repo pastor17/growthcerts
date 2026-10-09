@@ -1,9 +1,9 @@
 ---
-title: "第 4 章 · 破产法核心与证券发行"
+title: "第 3 章 · 破产法核心与证券发行"
 type: chapter
 cert: "fakao"
 book: "shangjingzhi"
-weight: 4
+weight: 3
 quizChapter: "商经·破产证券"
 description: "破产申请与受理、债权申报、债权人会议、重整/和解/清算三种程序、破产撤销权与无效行为；证券发行核准/注册制与信息披露——商经主观题高频。"
 ---
