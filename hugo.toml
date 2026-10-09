@@ -58,6 +58,9 @@ disableHugoGeneratorInject = true
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+    # 站内用单个 ~ 表示数字区间（如 80~150 小时），关闭删除线避免被误判为 ~~删除~~
+    [markup.goldmark.extensions]
+      strikethrough = false
   [markup.tableOfContents]
     startLevel = 2
     endLevel = 3

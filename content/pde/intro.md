@@ -9,7 +9,7 @@ weight: 10
 
 ## 是什么
 
-**PDE（Product Design Engineer，产品设计工程师）**是 AI 创业公司里"产品 + 设计 + 工程"三合一的岗位：
+<strong>PDE（Product Design Engineer，产品设计工程师）</strong>是 AI 创业公司里"产品 + 设计 + 工程"三合一的岗位：
 
 > **PDE 是能把产品问题想清楚、把交互设计出来、再亲手写成生产代码的人。**
 

@@ -14,7 +14,7 @@ official: "https://www.pmi.org"
 weight: 40
 ---
 
-> PMP（Project Management Professional）由 **PMI（美国项目管理协会）**认证，中国大陆考试由**中国国际人才交流基金会**组织。本站按最新考试内容大纲（ECO，三大领域：**人员 / 过程 / 业务环境**）与 PMBOK 指南组织精讲；具体报名条件、考试安排以 PMI 与基金会官方公告为准。
+> PMP（Project Management Professional）由 <strong>PMI（美国项目管理协会）</strong>认证，中国大陆考试由**中国国际人才交流基金会**组织。本站按最新考试内容大纲（ECO，三大领域：**人员 / 过程 / 业务环境**）与 PMBOK 指南组织精讲；具体报名条件、考试安排以 PMI 与基金会官方公告为准。
 
 **本站 PMP 资源**：
 
