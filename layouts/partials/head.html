@@ -53,7 +53,7 @@
 {{- $certslug := .File.ContentBaseName -}}
 {{- $chapters := slice -}}
 {{- range (where site.RegularPages "Params.cert" $certslug).ByWeight -}}
-  {{- $chapters = $chapters | append (dict "@type" "CourseSection" "name" .Title "url" .Permalink) -}}
+  {{- if eq .Type "chapter" -}}{{- $chapters = $chapters | append (dict "@type" "CourseSection" "name" .Title "url" .Permalink) -}}{{- end -}}
 {{- end -}}
 {{- $ld := dict "@context" "https://schema.org" "@type" "Course" "name" .Title "alternateName" .Params.shortname "description" $desc "inLanguage" "zh-CN" "url" .Permalink "provider" (dict "@type" "Organization" "name" site.Params.author "url" site.BaseURL) -}}
 {{- if $chapters }}{{ $ld = merge $ld (dict "hasPart" $chapters) }}{{ end -}}

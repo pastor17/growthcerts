@@ -9,7 +9,7 @@
       <div class="site-footer__col site-footer__col--certs">
         <h3>证书库</h3>
         {{ $certs := where site.Sections "Params.type" "cert" }}
-        {{ $fields := slice "信息技术" "教育" "项目管理" "财会金融" "数字媒体" "人工智能" "工程建设" "公职" "法律" "技能操作" "医护" "社会服务" "经济与职称" "安全生产" }}
+        {{ $fields := slice "信息技术" "教育" "项目管理" "财会金融" "数字媒体" "人工智能" "工程建设" "公职" "法律" "技能操作" "医护" "健康服务" "社会服务" "经济与职称" "安全生产" }}
         {{ range $fields }}
           {{ $field := . }}
           {{ $items := where $certs "Params.field" $field }}
